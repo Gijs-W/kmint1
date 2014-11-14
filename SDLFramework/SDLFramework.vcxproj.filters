@@ -18,6 +18,12 @@
     <Filter Include="Header Files\Graph">
       <UniqueIdentifier>{e23e308c-5909-43c4-a29e-de36f18deb26}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Entities">
+      <UniqueIdentifier>{43eca9e5-853d-46c0-8aa6-146370e691d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entities">
+      <UniqueIdentifier>{6809b92f-c6e6-44a8-ac8c-128d0d39fc4c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -34,6 +40,9 @@
     </ClCompile>
     <ClCompile Include="Edge.cpp">
       <Filter>Source Files\Graph</Filter>
+    </ClCompile>
+    <ClCompile Include="Cow.cpp">
+      <Filter>Source Files\Entities</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -57,6 +66,9 @@
     </ClInclude>
     <ClInclude Include="Edge.h">
       <Filter>Header Files\Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="Cow.h">
+      <Filter>Header Files\Entities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
