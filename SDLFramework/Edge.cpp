@@ -16,6 +16,10 @@ Vertex* Edge::getSource(){
 	return m_Source;
 }
 
+int Edge::getDistance(){
+	return m_Distance;
+}
+
 Edge::~Edge()
 {
 	delete m_Source;

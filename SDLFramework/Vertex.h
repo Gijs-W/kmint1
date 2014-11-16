@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include "IGameObject.h"
+
 using std::vector;
 
 class Edge;
@@ -18,6 +19,12 @@ public:
 	vector<Edge*>* getEdges();
 	void setGameObject(IGameObject* gameObject);
 	IGameObject* takeGameObject();
+
+	void Draw();
+
+	Vertex* m_VisitedBy = nullptr;
+	int m_MinDistance;
+
 	~Vertex();
 };
 

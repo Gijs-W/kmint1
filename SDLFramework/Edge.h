@@ -8,8 +8,10 @@ private:
 	int m_Distance;
 public:
 	Edge(Vertex* source, Vertex* destination, int distance);
+
 	Vertex* getSource();
 	Vertex* getDestination();
+	int getDistance();
 	~Edge();
 };
 
