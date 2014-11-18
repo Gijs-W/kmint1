@@ -16,7 +16,7 @@ Graph::Graph(FWApplication* application)
 	rabbit->SetTexture(rabitTexture);
 	rabbit->SetSize(32, 32);
 
-	SDL_Texture* vertexTexture = application->LoadTexture("pill.png");//todo: delete
+	SDL_Texture* vertexTexture = application->LoadTexture("node.png");//todo: delete
 
 	Vertex* vertex1 = new Vertex();
 	vertex1->SetOffset(32, 160);
