@@ -1,7 +1,8 @@
 #include "Graph.h"
 #include "Cow.h"
 #include "Edge.h"
-
+#include <math.h>       /* pow */
+#include <stdlib.h>     /* abs */
 
 Graph::Graph(FWApplication* application)
 {
@@ -99,7 +100,30 @@ void Graph::calculateRoute(){
 		vertex->m_MinDistance = std::numeric_limits<int>::max();
 	}
 
-	while (!m_OpenList->empty()) {
+	//Get X and Y value: Must be uint_32 because of the framework
+	uint32_t cowX, cowY, rabbitX, rabbitY;
+	m_VertexCow->GetOffset(cowX, cowY);
+	m_VertexRabbit->GetOffset(rabbitX, rabbitY);
+
+	//Convert to int for calculations
+	int cowXint = cowX, cowYint = cowY, rabbitXint = rabbitX, rabbitYint = rabbitY;
+
+	//Calculate C length -> Pythagorean theorem
+	int a = pow((float)(cowXint - rabbitXint), 2);
+	int b = pow((float)(cowYint - rabbitYint), 2);
+	float GuessedDistance = abs(sqrt(a + b));// C
+
+	//TODO: Deze guessedDistance is de echte afstand tussen beide punten.
+	//		Nu moet dus deze waarde worden meegerekend.
+	//		Echter, met de huidige loop hieronder wordt bij het ophalen van de edges van de vertices uit de OpenList
+	//		de nieuwe eventuele vertices gesorted in de "vertex->getEdges()" functie die wordt aangeroepen.
+	//		Hier zal dus de guessDistance aan toe moeten worden gevoegd.
+	//		Ook zal na het toevoegen van de vertex aan de OpenList de openList volgens mij worden gesorteerd.
+	//		(of wat dat dan meteen goed gedaan?)
+	//		anyways, zodra dat fixed is , is het done i guess
+
+	bool looping = true;
+	while (!m_OpenList->empty() && looping) {
 		Vertex* vertex = m_OpenList->front();
 		m_OpenList->pop();
 
@@ -113,7 +137,7 @@ void Graph::calculateRoute(){
 				int distance = edge->getDistance();
 
 				int totalDistance = vertex->m_MinDistance + distance;
-				if (totalDistance < target->m_MinDistance) {
+				if ((totalDistance) < target->m_MinDistance) {
 					//m_OpenList->remove(target);//?!?!??!
 					target->m_MinDistance = totalDistance;
 					target->m_VisitedBy = vertex;
