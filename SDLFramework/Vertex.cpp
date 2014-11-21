@@ -3,7 +3,7 @@
 #include <string>
 #include <algorithm>
 
-bool sortByDistance(Edge *lhs, Edge *rhs) {
+bool sortByDistance(Edge *lhs, Edge *rhs) { //todo: give this method a proper position in the code
 	return lhs->getDistance() < rhs->getDistance();
 }
 

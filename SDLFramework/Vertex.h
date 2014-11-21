@@ -24,6 +24,7 @@ public:
 
 	Vertex* m_VisitedBy = nullptr;
 	int m_MinDistance;
+	int m_GuessedTotalDistance;
 
 	~Vertex();
 };

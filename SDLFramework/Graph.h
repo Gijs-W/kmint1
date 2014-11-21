@@ -6,7 +6,7 @@
 
 using std::vector;
 using std::list;
-using std::queue;
+//using std::queue;
 
 class Graph
 {
@@ -16,9 +16,9 @@ private:
 	Vertex* m_VertexRabbit;
 
 	vector<Vertex*>* m_ClosedList;
-	queue<Vertex*>* m_OpenList;
+	vector<Vertex*>* m_OpenList;
 	list<Vertex*>* m_Route;
-	void calculateRoute();
+	void calculateRoute(Vertex* source, Vertex* target);
 
 public:
 	Graph(FWApplication* application);
