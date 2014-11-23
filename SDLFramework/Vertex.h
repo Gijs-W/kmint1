@@ -11,6 +11,7 @@ class Vertex: public IGameObject
 private:
 	vector<Edge*>* m_Edges;
 	IGameObject* m_GameObject;
+	IGameObject* m_OldObject = nullptr; // zodat we even een game object aan de kant kunnen schuiven
 public:
 	Vertex();
 	void Update(float dt);

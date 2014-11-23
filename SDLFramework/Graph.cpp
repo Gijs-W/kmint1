@@ -324,13 +324,13 @@ void Graph::nextStep(){
 
 		Vertex* newPillVertex;
 		do {
-			result = rand() % m_Vertices->size();
+			result = rand() % (m_Vertices->size());
 			newPillVertex = m_Vertices->at(result);
 		} while (newPillVertex == m_Pill && newPillVertex == m_VertexCow);
 
 		Vertex* newGunVertex;
 		do {
-			result = rand() % m_Vertices->size();
+			result = rand() % (m_Vertices->size());
 			newGunVertex = m_Vertices->at(result);
 		} while (newGunVertex == m_MachineGun && newPillVertex == m_Pill && newPillVertex == m_VertexCow);
 

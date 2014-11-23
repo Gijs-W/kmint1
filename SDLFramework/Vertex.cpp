@@ -68,13 +68,19 @@ vector<Edge*>* Vertex::getEdges(){
 
 void Vertex::setGameObject(IGameObject* gameObject){
 	if (gameObject != nullptr){
-		//todo: Error? Delete?
+		m_OldObject = m_GameObject;
 	}
 	m_GameObject = gameObject;
 }
 IGameObject* Vertex::takeGameObject(){
 	IGameObject* temp = m_GameObject;
 	m_GameObject = nullptr;
+
+	if (m_OldObject) {
+		m_GameObject = m_OldObject;
+		m_OldObject = nullptr;
+	}
+
 	return temp;
 }
 
