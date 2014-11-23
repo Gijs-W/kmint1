@@ -304,8 +304,7 @@ void Graph::nextStep(){
 		m_VertexCow->setGameObject(cow);
 	}
 	else{
-		cowState->Finished(this);
-		cowState->Handle(this);
+
 
 		IGameObject* cow = m_VertexCow->takeGameObject();
 		IGameObject* rabbit = m_VertexRabbit->takeGameObject();
@@ -327,13 +326,13 @@ void Graph::nextStep(){
 		do {
 			result = rand() % m_Vertices->size();
 			newPillVertex = m_Vertices->at(result);
-		} while (newPillVertex == m_Pill);
+		} while (newPillVertex == m_Pill && newPillVertex == m_VertexCow);
 
 		Vertex* newGunVertex;
 		do {
 			result = rand() % m_Vertices->size();
 			newGunVertex = m_Vertices->at(result);
-		} while (newGunVertex == m_MachineGun);
+		} while (newGunVertex == m_MachineGun && newPillVertex == m_Pill && newPillVertex == m_VertexCow);
 
 
 		m_VertexRabbit = newRabbitVertex;
@@ -345,12 +344,15 @@ void Graph::nextStep(){
 		m_MachineGun = newGunVertex;
 		m_MachineGun->setGameObject(machinegun);
 
-		cow->SetTexture(m_application->LoadTexture(cowState->GetTexturePath()));
+		
 
 
 		m_VertexCow = m_Route->front();
 		m_Route->pop_front();
 		m_VertexCow->setGameObject(cow);
+		cowState->Finished(this);
+		cowState->Handle(this);
+		cow->SetTexture(m_application->LoadTexture(cowState->GetTexturePath()));
 		//calculateRoute(m_VertexCow, m_VertexRabbit);
 
 	}
