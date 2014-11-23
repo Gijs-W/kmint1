@@ -11,16 +11,29 @@ bool sortByGuessedTotalDistance(Vertex *lhs, Vertex *rhs) { //todo: give this me
 
 Graph::Graph(FWApplication* application)
 {
+	m_application = application;
 	m_Vertices = new vector <Vertex*>;
 	IGameObject* cow = new Cow();
 	SDL_Texture* cowTexture = application->LoadTexture("cow-1.png"); //todo: delete
 	cow->SetTexture(cowTexture);
 	cow->SetSize(32, 32);
 
+	// Alles is een koe. Ook irl.
 	IGameObject* rabbit = new Cow();
 	SDL_Texture* rabitTexture = application->LoadTexture("rabbit-2.png");//todo: delete
 	rabbit->SetTexture(rabitTexture);
 	rabbit->SetSize(32, 32);
+
+	IGameObject* pill = new Cow();
+	SDL_Texture* pillTexture = application->LoadTexture("pill.png");
+	pill->SetTexture(pillTexture);
+	pill->SetSize(32, 32);
+
+	IGameObject* metalgun = new Cow();
+	SDL_Texture* metalTexture = application->LoadTexture("gun-metal.png");
+	metalgun->SetTexture(metalTexture);
+	metalgun->SetSize(32, 32);
+
 
 	SDL_Texture* vertexTexture = application->LoadTexture("node.png");//todo: delete
 
@@ -145,6 +158,12 @@ Graph::Graph(FWApplication* application)
 	vertex5->setGameObject(rabbit);
 	m_VertexRabbit = vertex5;
 
+	vertex10->setGameObject(pill);
+	m_Pill = vertex10;
+
+	vertex14->setGameObject(metalgun);
+	m_MachineGun = vertex14;
+
 	addVertex(vertex1);
 	addVertex(vertex2);
 	addVertex(vertex3);
@@ -181,7 +200,8 @@ Graph::Graph(FWApplication* application)
 	m_ClosedList = new vector<Vertex*>;
 	m_OpenList = new vector<Vertex*>;
 	
-	calculateRoute(m_VertexCow, m_VertexRabbit);
+	//calculateRoute(m_VertexCow, m_VertexRabbit);
+	cowState->Handle(this);
 
 }
 
@@ -284,14 +304,17 @@ void Graph::nextStep(){
 		m_VertexCow->setGameObject(cow);
 	}
 	else{
+		cowState->Finished(this);
+		cowState->Handle(this);
 
 		IGameObject* cow = m_VertexCow->takeGameObject();
 		IGameObject* rabbit = m_VertexRabbit->takeGameObject();
+		IGameObject* pill = m_Pill->takeGameObject();
+		IGameObject* machinegun = m_MachineGun->takeGameObject();
+		
+	
 
-		m_VertexCow = m_Route->front();
-		m_Route->pop_front();
-		m_VertexCow->setGameObject(cow);
-
+		// copy pasten is cool
 		int result;
 		Vertex* newRabbitVertex;
 		do{
@@ -299,10 +322,37 @@ void Graph::nextStep(){
 			newRabbitVertex = m_Vertices->at(result);
 		} while (newRabbitVertex == m_VertexCow);
 
+
+		Vertex* newPillVertex;
+		do {
+			result = rand() % m_Vertices->size();
+			newPillVertex = m_Vertices->at(result);
+		} while (newPillVertex == m_Pill);
+
+		Vertex* newGunVertex;
+		do {
+			result = rand() % m_Vertices->size();
+			newGunVertex = m_Vertices->at(result);
+		} while (newGunVertex == m_MachineGun);
+
+
 		m_VertexRabbit = newRabbitVertex;
 		m_VertexRabbit->setGameObject(rabbit);
 
-		calculateRoute(m_VertexCow, m_VertexRabbit);
+		m_Pill = newPillVertex;
+		m_Pill->setGameObject(pill);
+
+		m_MachineGun = newGunVertex;
+		m_MachineGun->setGameObject(machinegun);
+
+		cow->SetTexture(m_application->LoadTexture(cowState->GetTexturePath()));
+
+
+		m_VertexCow = m_Route->front();
+		m_Route->pop_front();
+		m_VertexCow->setGameObject(cow);
+		//calculateRoute(m_VertexCow, m_VertexRabbit);
+
 	}
 }
 
