@@ -90,7 +90,10 @@
     <ClCompile Include="Edge.cpp" />
     <ClCompile Include="FWApplication.cpp" />
     <ClCompile Include="Graph.cpp" />
+    <ClCompile Include="Gun.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Pill.cpp" />
+    <ClCompile Include="Rabbit.cpp" />
     <ClCompile Include="Vertex.cpp" />
     <ClCompile Include="WanderingState.cpp" />
   </ItemGroup>
@@ -103,10 +106,15 @@
     <ClInclude Include="Config.h" />
     <ClInclude Include="Cow.h" />
     <ClInclude Include="Edge.h" />
+    <ClInclude Include="eGameEntity.h" />
     <ClInclude Include="FWApplication.h" />
     <ClInclude Include="Graph.h" />
+    <ClInclude Include="Gun.h" />
     <ClInclude Include="IFSMCow.h" />
+    <ClInclude Include="IGameEntity.h" />
     <ClInclude Include="IGameObject.h" />
+    <ClInclude Include="Pill.h" />
+    <ClInclude Include="Rabbit.h" />
     <ClInclude Include="Vertex.h" />
     <ClInclude Include="WanderingState.h" />
   </ItemGroup>

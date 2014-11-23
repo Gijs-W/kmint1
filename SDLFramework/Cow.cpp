@@ -1,10 +1,8 @@
 #include "Cow.h"
 
-
 Cow::Cow()
 {
-	//SDL_Texture* texture = new SDL_Texture();
-	//SetTexture();
+	m_Enum = eGameEntity::eCow;
 }
 
 void Cow::Update(float dt){

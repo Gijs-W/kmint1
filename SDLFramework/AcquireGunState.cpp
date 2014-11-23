@@ -2,7 +2,7 @@
 
 #include "Graph.h"
 void AcquireGunState::Handle(Graph* graph) {
-	graph->calculateRoute(graph->m_VertexCow, graph->m_VertexRabbit);
+	graph->calculateRoute(graph->m_VertexCow, graph->m_MachineGun);
 }
 
 void AcquireGunState::Finished(Graph* graph) {

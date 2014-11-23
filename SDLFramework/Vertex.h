@@ -1,25 +1,24 @@
 #pragma once
 #include <vector>
-#include "IGameObject.h"
+#include "IGameEntity.h"
 
 using std::vector;
 
 class Edge;
 
-class Vertex: public IGameObject
+class Vertex : public IGameEntity
 {
 private:
 	vector<Edge*>* m_Edges;
-	IGameObject* m_GameObject;
-	IGameObject* m_OldObject = nullptr; // zodat we even een game object aan de kant kunnen schuiven
+	vector<IGameEntity*>* m_GameEntities;
 public:
 	Vertex();
 	void Update(float dt);
 
 	void ConnectTo(Vertex* vertex, int distance);
 	vector<Edge*>* getEdges();
-	void setGameObject(IGameObject* gameObject);
-	IGameObject* takeGameObject();
+	void addGameObject(IGameEntity* gameObject);
+	IGameEntity* takeGameObject(eGameEntity entity);
 
 	void Draw();
 

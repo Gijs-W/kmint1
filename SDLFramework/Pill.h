@@ -1,11 +1,11 @@
 #pragma once
 #include "IGameEntity.h"
 
-class Cow: public IGameEntity
+class Pill : public IGameEntity
 {
 public:
-	Cow();
+	Pill();
 	void Update(float deltaTime);
-	~Cow();
+	~Pill();
 };
 

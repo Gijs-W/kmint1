@@ -10,6 +10,7 @@ bool sortByDistance(Edge *lhs, Edge *rhs) { //todo: give this method a proper po
 Vertex::Vertex()
 {
 	m_Edges = new vector <Edge*>;
+	m_GameEntities = new vector <IGameEntity*>;
 }
 
 void Vertex::Update(float dt){
@@ -27,9 +28,16 @@ void Vertex::Draw()
 		mApplication->DrawTexture(mTexture, mX, mY, mWidth, mHeight);
 
 
-	if (m_GameObject != nullptr){
-		m_GameObject->SetOffset(this->mX, this->mY);
-		m_GameObject->Draw();
+	//Draw images next to eachother:
+	int entityCount = m_GameEntities->size();
+	int imageWidth = 32;
+	int totalSize = entityCount * imageWidth;
+	int currentCount = 0;
+	for (IGameEntity* entity : *m_GameEntities){
+		int addToXPosition = (entityCount > 1) ? (currentCount * imageWidth) - (totalSize / 2) + (imageWidth/2) : 0;
+		entity->SetOffset(this->mX + addToXPosition, this->mY);
+		entity->Draw();
+		currentCount++;
 	}
 
 	mApplication->SetColor(Color(0, 0, 0, 255));
@@ -66,26 +74,29 @@ vector<Edge*>* Vertex::getEdges(){
 	return m_Edges;
 }
 
-void Vertex::setGameObject(IGameObject* gameObject){
-	if (gameObject != nullptr){
-		m_OldObject = m_GameObject;
-	}
-	m_GameObject = gameObject;
+void Vertex::addGameObject(IGameEntity* gameObject){
+	m_GameEntities->push_back(gameObject);
 }
-IGameObject* Vertex::takeGameObject(){
-	IGameObject* temp = m_GameObject;
-	m_GameObject = nullptr;
+IGameEntity* Vertex::takeGameObject(eGameEntity entityEnum){
 
-	if (m_OldObject) {
-		m_GameObject = m_OldObject;
-		m_OldObject = nullptr;
+	IGameEntity* result = nullptr;
+
+	for (IGameEntity* entity : *m_GameEntities){
+		if (entity->getEnum() == entityEnum){
+			result = entity;
+			break;
+		}
+	}
+	//delete from vector:
+	if (result != nullptr){
+		m_GameEntities->erase(std::remove(m_GameEntities->begin(), m_GameEntities->end(), result), m_GameEntities->end());
 	}
 
-	return temp;
+	return result;
 }
 
 Vertex::~Vertex()
 {
-	//todo: delete list -> doen we wss in graph klasse
-	delete m_GameObject;
+	//todo: delete list 
+
 }

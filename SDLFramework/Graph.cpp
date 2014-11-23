@@ -1,5 +1,9 @@
 #include "Graph.h"
+#include "IGameEntity.h"
 #include "Cow.h"
+#include "Rabbit.h"
+#include "Pill.h"
+#include "Gun.h"
 #include "Edge.h"
 #include <math.h>       /* pow */
 #include <stdlib.h>     /* abs */
@@ -13,24 +17,23 @@ Graph::Graph(FWApplication* application)
 {
 	m_application = application;
 	m_Vertices = new vector <Vertex*>;
-	IGameObject* cow = new Cow();
+	IGameEntity* cow = new Cow();
 	SDL_Texture* cowTexture = application->LoadTexture("cow-1.png"); //todo: delete
 	cow->SetTexture(cowTexture);
 	cow->SetSize(32, 32);
 
-	// Alles is een koe. Ook irl.
-	IGameObject* rabbit = new Cow();
+	IGameEntity* rabbit = new Rabbit();
 	SDL_Texture* rabitTexture = application->LoadTexture("rabbit-2.png");//todo: delete
 	rabbit->SetTexture(rabitTexture);
 	rabbit->SetSize(32, 32);
 
-	IGameObject* pill = new Cow();
-	SDL_Texture* pillTexture = application->LoadTexture("pill.png");
+	IGameEntity* pill = new Pill();
+	SDL_Texture* pillTexture = application->LoadTexture("pill.png");//todo: delete
 	pill->SetTexture(pillTexture);
 	pill->SetSize(32, 32);
 
-	IGameObject* metalgun = new Cow();
-	SDL_Texture* metalTexture = application->LoadTexture("gun-metal.png");
+	IGameEntity* metalgun = new Gun();
+	SDL_Texture* metalTexture = application->LoadTexture("gun-metal.png");//todo: delete
 	metalgun->SetTexture(metalTexture);
 	metalgun->SetSize(32, 32);
 
@@ -153,15 +156,15 @@ Graph::Graph(FWApplication* application)
 	vertex2->ConnectTo(vertex7, 2600);
 	vertex7->ConnectTo(vertex2, 2600);
 
-	vertex1->setGameObject(cow);
+	vertex1->addGameObject(cow);
 	m_VertexCow = vertex1;
-	vertex5->setGameObject(rabbit);
+	vertex5->addGameObject(rabbit);
 	m_VertexRabbit = vertex5;
 
-	vertex10->setGameObject(pill);
+	vertex10->addGameObject(pill);
 	m_Pill = vertex10;
 
-	vertex14->setGameObject(metalgun);
+	vertex14->addGameObject(metalgun);
 	m_MachineGun = vertex14;
 
 	addVertex(vertex1);
@@ -212,6 +215,11 @@ void Graph::addVertex(Vertex* vertex){
 }
 
 void Graph::calculateRoute(Vertex* source, Vertex* target){
+	if (source == target){
+		//ERROR
+		return;
+	}
+
 	m_Route->clear();
 
 	for (Vertex* vertex : *m_Vertices){
@@ -288,7 +296,6 @@ void Graph::calculateRoute(Vertex* source, Vertex* target){
 		m_Route->push_front(current);
 		current = current->m_VisitedBy;
 	}
-	
 
 	//m_OpenList->
 	m_ClosedList->clear();
@@ -298,20 +305,21 @@ void Graph::calculateRoute(Vertex* source, Vertex* target){
 void Graph::nextStep(){
 	if (m_Route->size() > 1){
 
-		IGameObject* cow = m_VertexCow->takeGameObject();
+		IGameEntity* cow = m_VertexCow->takeGameObject(eCow);
 		m_VertexCow = m_Route->front();
 		m_Route->pop_front();
-		m_VertexCow->setGameObject(cow);
+		m_VertexCow->addGameObject(cow);
 	}
-	else{
+	else if(m_Route->size() == 1){
 
+		IGameEntity* cow = m_VertexCow->takeGameObject(eCow);
+		IGameEntity* rabbit = m_VertexRabbit->takeGameObject(eRabbit);
+		IGameEntity* pill = m_Pill->takeGameObject(ePill);
+		IGameEntity* machinegun = m_MachineGun->takeGameObject(eGun);
 
-		IGameObject* cow = m_VertexCow->takeGameObject();
-		IGameObject* rabbit = m_VertexRabbit->takeGameObject();
-		IGameObject* pill = m_Pill->takeGameObject();
-		IGameObject* machinegun = m_MachineGun->takeGameObject();
-		
-	
+		m_VertexCow = m_Route->front();
+		m_Route->pop_front();
+		m_VertexCow->addGameObject(cow);
 
 		// copy pasten is cool
 		int result;
@@ -321,35 +329,28 @@ void Graph::nextStep(){
 			newRabbitVertex = m_Vertices->at(result);
 		} while (newRabbitVertex == m_VertexCow);
 
-
 		Vertex* newPillVertex;
 		do {
 			result = rand() % (m_Vertices->size());
 			newPillVertex = m_Vertices->at(result);
-		} while (newPillVertex == m_Pill && newPillVertex == m_VertexCow);
+		} while (newPillVertex == m_VertexCow);
 
 		Vertex* newGunVertex;
 		do {
 			result = rand() % (m_Vertices->size());
 			newGunVertex = m_Vertices->at(result);
-		} while (newGunVertex == m_MachineGun && newPillVertex == m_Pill && newPillVertex == m_VertexCow);
+		} while (newGunVertex == m_VertexCow);
 
 
 		m_VertexRabbit = newRabbitVertex;
-		m_VertexRabbit->setGameObject(rabbit);
+		m_VertexRabbit->addGameObject(rabbit);
 
 		m_Pill = newPillVertex;
-		m_Pill->setGameObject(pill);
+		m_Pill->addGameObject(pill);
 
 		m_MachineGun = newGunVertex;
-		m_MachineGun->setGameObject(machinegun);
+		m_MachineGun->addGameObject(machinegun);
 
-		
-
-
-		m_VertexCow = m_Route->front();
-		m_Route->pop_front();
-		m_VertexCow->setGameObject(cow);
 		cowState->Finished(this);
 		cowState->Handle(this);
 		cow->SetTexture(m_application->LoadTexture(cowState->GetTexturePath()));

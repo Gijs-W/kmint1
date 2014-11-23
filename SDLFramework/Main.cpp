@@ -36,9 +36,9 @@ int main(int args[])
 				application->Quit();
 				break;
 			case SDL_KEYDOWN:
+				graph->nextStep();
 				switch (event.key.keysym.scancode){
 					case SDL_SCANCODE_SPACE:
-						graph->nextStep();
 						break;
 					default:
 						break;
