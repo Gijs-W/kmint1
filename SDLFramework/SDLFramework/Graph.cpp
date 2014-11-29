@@ -303,6 +303,7 @@ void Graph::calculateRoute(Vertex* source, Vertex* target){
 
 
 void Graph::nextStep(){
+	hareState->Handle(this);
 	if (m_Route->size() > 1){
 
 		IGameEntity* cow = m_VertexCow->takeGameObject(eCow);

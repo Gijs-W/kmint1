@@ -91,6 +91,7 @@
     <ClCompile Include="FWApplication.cpp" />
     <ClCompile Include="Graph.cpp" />
     <ClCompile Include="Gun.cpp" />
+    <ClCompile Include="HareWanderingState.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Pill.cpp" />
     <ClCompile Include="Rabbit.cpp" />
@@ -110,7 +111,9 @@
     <ClInclude Include="FWApplication.h" />
     <ClInclude Include="Graph.h" />
     <ClInclude Include="Gun.h" />
+    <ClInclude Include="HareWanderingState.h" />
     <ClInclude Include="IFSMCow.h" />
+    <ClInclude Include="IFSMHare.h" />
     <ClInclude Include="IGameEntity.h" />
     <ClInclude Include="IGameObject.h" />
     <ClInclude Include="Pill.h" />

@@ -24,11 +24,17 @@
     <Filter Include="Source Files\Entities">
       <UniqueIdentifier>{6809b92f-c6e6-44a8-ac8c-128d0d39fc4c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\FSM">
+    <Filter Include="Source Files\FSMCow">
+      <UniqueIdentifier>{4cde60da-3c1c-45ae-af04-564fa9e116f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\FSMCow">
       <UniqueIdentifier>{66e10543-4793-4829-b7c4-acc36ad00a55}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\FSM">
-      <UniqueIdentifier>{4cde60da-3c1c-45ae-af04-564fa9e116f5}</UniqueIdentifier>
+    <Filter Include="Header Files\FSMHare">
+      <UniqueIdentifier>{62324c3a-f4f4-44b8-9df6-66e0d2f7534d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\FSMHare">
+      <UniqueIdentifier>{ac807779-0ef1-4754-8df5-966a3382ef20}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -51,13 +57,13 @@
       <Filter>Source Files\Entities</Filter>
     </ClCompile>
     <ClCompile Include="ChaseRabbitState.cpp">
-      <Filter>Source Files\FSM</Filter>
+      <Filter>Source Files\FSMCow</Filter>
     </ClCompile>
     <ClCompile Include="WanderingState.cpp">
-      <Filter>Source Files\FSM</Filter>
+      <Filter>Source Files\FSMCow</Filter>
     </ClCompile>
     <ClCompile Include="AcquireGunState.cpp">
-      <Filter>Source Files\FSM</Filter>
+      <Filter>Source Files\FSMCow</Filter>
     </ClCompile>
     <ClCompile Include="Rabbit.cpp">
       <Filter>Source Files\Entities</Filter>
@@ -67,6 +73,9 @@
     </ClCompile>
     <ClCompile Include="Gun.cpp">
       <Filter>Source Files\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="HareWanderingState.cpp">
+      <Filter>Source Files\FSMHare</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -95,16 +104,16 @@
       <Filter>Header Files\Entities</Filter>
     </ClInclude>
     <ClInclude Include="IFSMCow.h">
-      <Filter>Header Files\FSM</Filter>
+      <Filter>Header Files\FSMCow</Filter>
     </ClInclude>
     <ClInclude Include="ChaseRabbitState.h">
-      <Filter>Header Files\FSM</Filter>
+      <Filter>Header Files\FSMCow</Filter>
     </ClInclude>
     <ClInclude Include="WanderingState.h">
-      <Filter>Header Files\FSM</Filter>
+      <Filter>Header Files\FSMCow</Filter>
     </ClInclude>
     <ClInclude Include="AcquireGunState.h">
-      <Filter>Header Files\FSM</Filter>
+      <Filter>Header Files\FSMCow</Filter>
     </ClInclude>
     <ClInclude Include="Pill.h">
       <Filter>Header Files\Entities</Filter>
@@ -120,6 +129,12 @@
     </ClInclude>
     <ClInclude Include="IGameEntity.h">
       <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="IFSMHare.h">
+      <Filter>Header Files\FSMHare</Filter>
+    </ClInclude>
+    <ClInclude Include="HareWanderingState.h">
+      <Filter>Header Files\FSMHare</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

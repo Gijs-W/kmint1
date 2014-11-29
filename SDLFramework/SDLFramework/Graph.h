@@ -6,7 +6,7 @@
 #include "WanderingState.h"
 #include "ChaseRabbitState.h"
 #include "AcquireGunState.h"
-
+#include "HareWanderingState.h"
 
 using std::vector;
 using std::list;
@@ -14,6 +14,7 @@ using std::list;
 //using std::queue;
 class ChaseRabbitState;
 class IFSMCow;
+class IFSMHare;
 class Graph
 {
 private:
@@ -34,6 +35,7 @@ public:
 	Vertex* m_MachineGun;
 	Vertex* m_Pill;
 	IFSMCow* cowState = new WanderingState;
+	IFSMHare* hareState = new HareWanderingState;
 	Graph(FWApplication* application);
 	void calculateRoute(Vertex* source, Vertex* target);
 	void addVertex(Vertex* vertex);
