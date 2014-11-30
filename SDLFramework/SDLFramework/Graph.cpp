@@ -303,7 +303,8 @@ void Graph::calculateRoute(Vertex* source, Vertex* target){
 
 
 void Graph::nextStep(){
-	// Wat de haas doet is afhankelijk van de koe!
+	// Wat de haas doet is afhankelijk van de koe! Eigenlijk heeft de haas hierdoor 2 states. Als de koe niet aan het chases is
+	// zal de status van de haas inactief zijn. Anders zal hij vluchten, indien mogelijk.
 	cowState->HandleHareState(this);
 	if (m_Route->size() > 1){
 
