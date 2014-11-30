@@ -14,3 +14,7 @@ void ChaseRabbitState::Finished(Graph* graph) {
 std::string ChaseRabbitState::GetTexturePath() {
 	return "cow-red.png";
 }
+
+void ChaseRabbitState::HandleHareState(Graph* graph) {
+	graph->hareState->Handle(graph);
+}

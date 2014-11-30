@@ -7,4 +7,5 @@ public:
 	virtual void Handle(Graph* graph) = 0;
 	virtual void Finished(Graph* graph) = 0;
 	virtual std::string GetTexturePath() = 0;
+	virtual void HandleHareState(Graph* graph) {}
 };
