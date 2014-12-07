@@ -24,6 +24,7 @@ void Cow::Update(float dt){
 		m_Graph->ReShuffleAllExcept(eCow);
 		m_State->Finished(this);
 		m_State->Handle(this);
+		SetTexture(m_Graph->m_application->LoadTexture(m_State->GetTexturePath()));
 	}
 	
 	else {

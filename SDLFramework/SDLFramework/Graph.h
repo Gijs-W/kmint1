@@ -18,12 +18,12 @@ private:
 	vector<Vertex*>* m_ClosedList;
 	vector<Vertex*>* m_OpenList;
 	
-	FWApplication* m_application;
+	
 	
 
 public:
 	// even geen zin in getters & setters
-
+	FWApplication* m_application;
 	std::map<eGameEntity, Vertex*> m_phoneBook;
 	Graph(FWApplication* application);
 	list<Vertex*> calculateRoute(Vertex* source, Vertex* target);

@@ -12,5 +12,7 @@ public:
 	IFSMCow* m_State = new WanderingState;
 	void setRoute(eGameEntity source, eGameEntity target);
 	~Cow();
+
+	std::string getTexturePath() { return m_State->GetTexturePath();  }
 };
 
