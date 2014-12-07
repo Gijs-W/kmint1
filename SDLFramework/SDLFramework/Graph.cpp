@@ -7,7 +7,7 @@
 #include "Edge.h"
 #include <math.h>       /* pow */
 #include <stdlib.h>     /* abs */
-
+#include <stdexcept>
 
 bool sortByGuessedTotalDistance(Vertex *lhs, Vertex *rhs) { //todo: give this method a proper position in the code
 	return lhs->m_GuessedTotalDistance < rhs->m_GuessedTotalDistance;
@@ -17,22 +17,22 @@ Graph::Graph(FWApplication* application)
 {
 	m_application = application;
 	m_Vertices = new vector <Vertex*>;
-	IGameEntity* cow = new Cow();
+	IGameEntity* cow = new Cow(this);
 	SDL_Texture* cowTexture = application->LoadTexture("cow-1.png"); //todo: delete
 	cow->SetTexture(cowTexture);
 	cow->SetSize(32, 32);
 
-	IGameEntity* rabbit = new Rabbit();
+	IGameEntity* rabbit = new Rabbit(this);
 	SDL_Texture* rabitTexture = application->LoadTexture("rabbit-2.png");//todo: delete
 	rabbit->SetTexture(rabitTexture);
 	rabbit->SetSize(32, 32);
 
-	IGameEntity* pill = new Pill();
+	IGameEntity* pill = new Pill(this);
 	SDL_Texture* pillTexture = application->LoadTexture("pill.png");//todo: delete
 	pill->SetTexture(pillTexture);
 	pill->SetSize(32, 32);
 
-	IGameEntity* metalgun = new Gun();
+	IGameEntity* metalgun = new Gun(this);
 	SDL_Texture* metalTexture = application->LoadTexture("gun-metal.png");//todo: delete
 	metalgun->SetTexture(metalTexture);
 	metalgun->SetSize(32, 32);
@@ -157,15 +157,13 @@ Graph::Graph(FWApplication* application)
 	vertex7->ConnectTo(vertex2, 2600);
 
 	vertex1->addGameObject(cow);
-	m_VertexCow = vertex1;
+	m_phoneBook.insert({ eCow, vertex1 });
 	vertex5->addGameObject(rabbit);
-	m_VertexRabbit = vertex5;
-
+	m_phoneBook.insert({ eRabbit, vertex5 });
 	vertex10->addGameObject(pill);
-	m_Pill = vertex10;
-
+	m_phoneBook.insert({ ePill, vertex10 });
 	vertex14->addGameObject(metalgun);
-	m_MachineGun = vertex14;
+	m_phoneBook.insert({ eGun, vertex14 });
 
 	addVertex(vertex1);
 	addVertex(vertex2);
@@ -199,12 +197,9 @@ Graph::Graph(FWApplication* application)
 	application->AddRenderable(vertex14);
 	application->AddRenderable(vertex15);
 
-	m_Route = new list<Vertex*>();
 	m_ClosedList = new vector<Vertex*>;
 	m_OpenList = new vector<Vertex*>;
 	
-	//calculateRoute(m_VertexCow, m_VertexRabbit);
-	cowState->Handle(this);
 
 }
 
@@ -214,13 +209,13 @@ void Graph::addVertex(Vertex* vertex){
 	}
 }
 
-void Graph::calculateRoute(Vertex* source, Vertex* target){
+list<Vertex*> Graph::calculateRoute(Vertex* source, Vertex* target){
 	if (source == target){
 		//ERROR
-		return;
+		throw std::invalid_argument("Source and target are the same!");
 	}
 
-	m_Route->clear();
+	list<Vertex*> route;
 
 	for (Vertex* vertex : *m_Vertices){
 		vertex->m_VisitedBy = nullptr;
@@ -293,81 +288,143 @@ void Graph::calculateRoute(Vertex* source, Vertex* target){
 
 	Vertex* current = target;
 	while (current != nullptr && current != source){
-		m_Route->push_front(current);
+		route.push_front(current);
 		current = current->m_VisitedBy;
 	}
 
 	//m_OpenList->
 	m_ClosedList->clear();
+
+	return route;
 }
 
 
-void Graph::nextStep(){
-	// Wat de haas doet is afhankelijk van de koe! Eigenlijk heeft de haas hierdoor 2 states. Als de koe niet aan het chases is
-	// zal de status van de haas inactief zijn. Anders zal hij vluchten, indien mogelijk.
-	cowState->HandleHareState(this);
-	if (m_Route->size() > 1){
+void Graph::Update(float dt){
 
-		IGameEntity* cow = m_VertexCow->takeGameObject(eCow);
-		m_VertexCow = m_Route->front();
-		m_Route->pop_front();
-		m_VertexCow->addGameObject(cow);
+	/* Update all gameEntities: */
+	
+	m_phoneBook.at(eCow)->getGameObject(eCow)->Update(dt);
+
+	for (auto& kv : m_phoneBook) {
+		if (kv.first != eCow)
+		kv.second->getGameObject(kv.first)->Update(dt);
 	}
-	else if(m_Route->size() == 1){
+}
 
-		IGameEntity* cow = m_VertexCow->takeGameObject(eCow);
-		IGameEntity* rabbit = m_VertexRabbit->takeGameObject(eRabbit);
-		IGameEntity* pill = m_Pill->takeGameObject(ePill);
-		IGameEntity* machinegun = m_MachineGun->takeGameObject(eGun);
+list<Vertex*> Graph::getRoute(eGameEntity source, eGameEntity target){
 
-		m_VertexCow = m_Route->front();
-		m_Route->pop_front();
-		m_VertexCow->addGameObject(cow);
+	//search vectors
+	Vertex* v_source = m_phoneBook.at(source);
+	Vertex* v_target = m_phoneBook.at(target);
 
-		// copy pasten is cool
-		int result;
-		Vertex* newRabbitVertex;
+	return calculateRoute(v_source, v_target);
+}
+
+void Graph::moveGameObject(Vertex* target, eGameEntity entity){
+	IGameEntity* target_entity = m_phoneBook.at(entity)->takeGameObject(entity);
+	target->addGameObject(target_entity);
+//	m_phoneBook.insert({ entity, target });
+ 	m_phoneBook[entity] = target;
+}
+
+void Graph::ReShuffleAllExcept(eGameEntity exception){
+
+	Vertex* exceptionVertex = m_phoneBook.at(exception);
+
+	std::map<eGameEntity, Vertex*>::iterator it = m_phoneBook.begin();
+
+	//for (; it != m_phoneBook.end(); it++){
+	//	if (it->first == exception){
+	//		continue;
+	//	}
+	//	Vertex* newVertex;
+	//	do{
+	//		int result = rand() % (m_Vertices->size());
+	//		newVertex = m_Vertices->at(result);
+	//	} while (newVertex == exceptionVertex);
+
+	//	m_phoneBook[it->first] = newVertex;
+	////	m_phoneBook.insert({ it->first, newVertex });
+	//}
+
+	/* Update all gameEntities: */
+	for (const auto& kv : m_phoneBook) {
+		if (kv.first == exception){
+			continue;
+		}
+		Vertex* newVertex;
 		do{
-			result = rand() % (m_Vertices->size());
-			newRabbitVertex = m_Vertices->at(result);
-		} while (newRabbitVertex == m_VertexCow);
+			int result = rand() % (m_Vertices->size());
+			newVertex = m_Vertices->at(result);
+		} while (newVertex == exceptionVertex);
 
-		Vertex* newPillVertex;
-		do {
-			result = rand() % (m_Vertices->size());
-			newPillVertex = m_Vertices->at(result);
-		} while (newPillVertex == m_VertexCow);
-
-		Vertex* newGunVertex;
-		do {
-			result = rand() % (m_Vertices->size());
-			newGunVertex = m_Vertices->at(result);
-		} while (newGunVertex == m_VertexCow);
-
-
-		m_VertexRabbit = newRabbitVertex;
-		m_VertexRabbit->addGameObject(rabbit);
-
-		m_Pill = newPillVertex;
-		m_Pill->addGameObject(pill);
-
-		m_MachineGun = newGunVertex;
-		m_MachineGun->addGameObject(machinegun);
-
-		cowState->Finished(this);
-		cowState->Handle(this);
-		cow->SetTexture(m_application->LoadTexture(cowState->GetTexturePath()));
-		//calculateRoute(m_VertexCow, m_VertexRabbit);
-
+		m_phoneBook[kv.first] = newVertex;
 	}
 }
+
+/*
+
+// Wat de haas doet is afhankelijk van de koe! Eigenlijk heeft de haas hierdoor 2 states. Als de koe niet aan het chases is
+// zal de status van de haas inactief zijn. Anders zal hij vluchten, indien mogelijk.
+cowState->HandleHareState(this);
+if (m_Route->size() > 1){
+
+	IGameEntity* cow = m_VertexCow->takeGameObject(eCow);
+	m_VertexCow = m_Route->front();
+	m_Route->pop_front();
+	m_VertexCow->addGameObject(cow);
+}
+else if (m_Route->size() == 1){
+
+	IGameEntity* cow = m_VertexCow->takeGameObject(eCow);
+	IGameEntity* rabbit = m_VertexRabbit->takeGameObject(eRabbit);
+	IGameEntity* pill = m_Pill->takeGameObject(ePill);
+	IGameEntity* machinegun = m_MachineGun->takeGameObject(eGun);
+
+	m_VertexCow = m_Route->front();
+	m_Route->pop_front();
+	m_VertexCow->addGameObject(cow);
+
+	// copy pasten is cool
+	int result;
+	Vertex* newRabbitVertex;
+	do{
+		result = rand() % (m_Vertices->size());
+		newRabbitVertex = m_Vertices->at(result);
+	} while (newRabbitVertex == m_VertexCow);
+
+	Vertex* newPillVertex;
+	do {
+		result = rand() % (m_Vertices->size());
+		newPillVertex = m_Vertices->at(result);
+	} while (newPillVertex == m_VertexCow);
+
+	Vertex* newGunVertex;
+	do {
+		result = rand() % (m_Vertices->size());
+		newGunVertex = m_Vertices->at(result);
+	} while (newGunVertex == m_VertexCow);
+
+
+	m_VertexRabbit = newRabbitVertex;
+	m_VertexRabbit->addGameObject(rabbit);
+
+	m_Pill = newPillVertex;
+	m_Pill->addGameObject(pill);
+
+	m_MachineGun = newGunVertex;
+	m_MachineGun->addGameObject(machinegun);
+
+	cowState->Finished(this);
+	cowState->Handle(this);
+	cow->SetTexture(m_application->LoadTexture(cowState->GetTexturePath()));
+	//calculateRoute(m_VertexCow, m_VertexRabbit);
+
+	*/
 
 Graph::~Graph()
 {
 	delete m_Vertices;//todo: delete inhoudd
 	delete m_OpenList;
 	delete m_ClosedList;
-	delete m_VertexCow;
-	delete m_VertexRabbit;
-	delete m_Route;
 }

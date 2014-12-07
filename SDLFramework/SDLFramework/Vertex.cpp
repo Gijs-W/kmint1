@@ -77,6 +77,19 @@ vector<Edge*>* Vertex::getEdges(){
 void Vertex::addGameObject(IGameEntity* gameObject){
 	m_GameEntities->push_back(gameObject);
 }
+
+IGameEntity* Vertex::getGameObject(eGameEntity entityEnum){
+	IGameEntity* result = nullptr;
+
+	for (IGameEntity* entity : *m_GameEntities){
+		if (entity->getEnum() == entityEnum){
+			result = entity;
+			break;
+		}
+	}
+
+	return result;
+}
 IGameEntity* Vertex::takeGameObject(eGameEntity entityEnum){
 
 	IGameEntity* result = nullptr;

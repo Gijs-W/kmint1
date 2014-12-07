@@ -1,13 +1,13 @@
 #pragma once
 #include "IFSMCow.h"
-#include "ChaseRabbitState.h"
+
 class AcquireGunState : public IFSMCow {
 
 public:
 	AcquireGunState() {}
 	virtual ~AcquireGunState() {}
 
-	void Handle(Graph* graph);
-	void Finished(Graph* graph);
+	void Handle(Cow* cow);
+	void Finished(Cow* cow);
 	std::string GetTexturePath();
 };

@@ -3,18 +3,12 @@
 #include <vector>
 #include <list>
 #include <queue>
-#include "WanderingState.h"
-#include "ChaseRabbitState.h"
-#include "AcquireGunState.h"
-#include "HareWanderingState.h"
+#include <map>
 
 using std::vector;
 using std::list;
 
 //using std::queue;
-class ChaseRabbitState;
-class IFSMCow;
-class IFSMHare;
 class Graph
 {
 private:
@@ -23,23 +17,21 @@ private:
 
 	vector<Vertex*>* m_ClosedList;
 	vector<Vertex*>* m_OpenList;
-	list<Vertex*>* m_Route;
 	
 	FWApplication* m_application;
 	
 
 public:
 	// even geen zin in getters & setters
-	Vertex* m_VertexCow;
-	Vertex* m_VertexRabbit;
-	Vertex* m_MachineGun;
-	Vertex* m_Pill;
-	IFSMCow* cowState = new WanderingState;
-	IFSMHare* hareState = new HareWanderingState;
+
+	std::map<eGameEntity, Vertex*> m_phoneBook;
 	Graph(FWApplication* application);
-	void calculateRoute(Vertex* source, Vertex* target);
+	list<Vertex*> calculateRoute(Vertex* source, Vertex* target);
+	list<Vertex*> Graph::getRoute(eGameEntity source, eGameEntity target);
+	void Graph::ReShuffleAllExcept(eGameEntity focusEntity);
+	void moveGameObject(Vertex* target, eGameEntity entity);
 	void addVertex(Vertex* vertex);
-	void nextStep();
+	void Update(float dt);
 	~Graph();
 };
 

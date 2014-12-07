@@ -1,8 +1,9 @@
 #pragma once
 #include <string>
 class Graph;
+class Rabbit;
 class IFSMHare {
 
 public:
-	virtual void Handle(Graph* graph) = 0;
+	virtual void Handle(Rabbit* rabbit) = 0;
 };

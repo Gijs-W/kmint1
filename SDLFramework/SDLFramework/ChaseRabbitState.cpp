@@ -1,20 +1,19 @@
 #include "ChaseRabbitState.h"
-
+#include "WanderingState.h"
+#include "Cow.h"
 #include "Graph.h"
-void ChaseRabbitState::Handle(Graph* graph) {
-	graph->calculateRoute(graph->m_VertexCow, graph->m_VertexRabbit);
+
+
+void ChaseRabbitState::Handle(Cow* cow) {
+	cow->setRoute(eCow, eRabbit);
 }
 
-void ChaseRabbitState::Finished(Graph* graph) {
+void ChaseRabbitState::Finished(Cow* cow) {
 	printf("Rabbit caught\n");
-	delete graph->cowState;
-	graph->cowState = new WanderingState;
+	delete cow->m_State;
+	cow->m_State = new WanderingState;
 }
 
 std::string ChaseRabbitState::GetTexturePath() {
 	return "cow-red.png";
-}
-
-void ChaseRabbitState::HandleHareState(Graph* graph) {
-	graph->hareState->Handle(graph);
 }

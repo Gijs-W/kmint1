@@ -1,13 +1,17 @@
 #include "WanderingState.h"
+#include "AcquireGunState.h"
+#include "Cow.h";
 #include "Graph.h"
-void WanderingState::Handle(Graph* graph) {
-	graph->calculateRoute(graph->m_VertexCow, graph->m_Pill);
+
+
+void WanderingState::Handle(Cow* cow) {
+	cow->setRoute(eCow, ePill);
 }
 
-void WanderingState::Finished(Graph* graph) {
-		printf("Pill caught\n");
-		delete graph->cowState;
-		graph->cowState = new AcquireGunState;
+void WanderingState::Finished(Cow* cow) {
+	printf("Pill caught\n");
+	delete cow->m_State;
+	cow->m_State = new AcquireGunState;
 }
 
 std::string WanderingState::GetTexturePath() {

@@ -5,7 +5,6 @@
 using std::vector;
 
 class Edge;
-
 class Vertex : public IGameEntity
 {
 private:
@@ -18,6 +17,11 @@ public:
 	void ConnectTo(Vertex* vertex, int distance);
 	vector<Edge*>* getEdges();
 	void addGameObject(IGameEntity* gameObject);
+
+
+	void setRoute(eGameEntity source, eGameEntity target){}
+	
+	IGameEntity* getGameObject(eGameEntity entity);
 	IGameEntity* takeGameObject(eGameEntity entity);
 
 	void Draw();

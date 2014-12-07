@@ -2,7 +2,8 @@
 #include "Graph.h"
 #include "Edge.h"
 #include <time.h>
-void HareWanderingState::Handle(Graph* graph) {
+void HareWanderingState::Handle(Rabbit* rabbit){
+/*
 	srand(time(NULL));
 	std::vector<Edge*>* edges = graph->m_VertexRabbit->getEdges();
 
@@ -29,6 +30,6 @@ void HareWanderingState::Handle(Graph* graph) {
 		graph->m_VertexRabbit = escapeVertex;
 		graph->calculateRoute(graph->m_VertexCow, graph->m_VertexRabbit);
 	}
-
+	*/
 
 }

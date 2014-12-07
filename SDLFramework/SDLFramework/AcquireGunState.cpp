@@ -1,14 +1,17 @@
 #include "AcquireGunState.h"
-
+#include "ChaseRabbitState.h"
+#include "Cow.h"
 #include "Graph.h"
-void AcquireGunState::Handle(Graph* graph) {
-	graph->calculateRoute(graph->m_VertexCow, graph->m_MachineGun);
+
+
+void AcquireGunState::Handle(Cow* cow) {
+	cow->setRoute(eCow, eGun);
 }
 
-void AcquireGunState::Finished(Graph* graph) {
+void AcquireGunState::Finished(Cow* cow) {
 	printf("Gun found\n");
-	delete graph->cowState;
-	graph->cowState = new ChaseRabbitState;
+	delete cow->m_State;
+	cow->m_State = new ChaseRabbitState;
 }
 
 std::string AcquireGunState::GetTexturePath() {

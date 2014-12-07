@@ -7,8 +7,8 @@ public:
 	WanderingState() {}
 	virtual ~WanderingState() {}
 
-	void Handle(Graph* graph);
-	void Finished(Graph* graph);
+	void Handle(Cow* cow);
+	void Finished(Cow* cow);
 	std::string GetTexturePath();
 
 };
