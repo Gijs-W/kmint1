@@ -303,11 +303,15 @@ void Graph::Update(float dt){
 
 	/* Update all gameEntities: */
 	
-	m_phoneBook.at(eCow)->getGameObject(eCow)->Update(dt);
+ 	m_phoneBook.at(eCow)->getGameObject(eCow)->Update(dt);
 
 	for (auto& kv : m_phoneBook) {
-		if (kv.first != eCow)
-		kv.second->getGameObject(kv.first)->Update(dt);
+		if (kv.first != eCow){
+			IGameEntity *entity = kv.second->getGameObject(kv.first);
+
+
+			entity->Update(dt);
+		}
 	}
 }
 
@@ -331,25 +335,10 @@ void Graph::ReShuffleAllExcept(eGameEntity exception){
 
 	Vertex* exceptionVertex = m_phoneBook.at(exception);
 
-	std::map<eGameEntity, Vertex*>::iterator it = m_phoneBook.begin();
+ 	std::map<eGameEntity, Vertex*>::iterator it = m_phoneBook.begin();
 
-	//for (; it != m_phoneBook.end(); it++){
-	//	if (it->first == exception){
-	//		continue;
-	//	}
-	//	Vertex* newVertex;
-	//	do{
-	//		int result = rand() % (m_Vertices->size());
-	//		newVertex = m_Vertices->at(result);
-	//	} while (newVertex == exceptionVertex);
-
-	//	m_phoneBook[it->first] = newVertex;
-	////	m_phoneBook.insert({ it->first, newVertex });
-	//}
-
-	/* Update all gameEntities: */
-	for (const auto& kv : m_phoneBook) {
-		if (kv.first == exception){
+	for (; it != m_phoneBook.end(); it++){
+		if (it->first == exception){
 			continue;
 		}
 		Vertex* newVertex;
@@ -358,8 +347,25 @@ void Graph::ReShuffleAllExcept(eGameEntity exception){
 			newVertex = m_Vertices->at(result);
 		} while (newVertex == exceptionVertex);
 
-		m_phoneBook[kv.first] = newVertex;
+	//	m_phoneBook[it->first] = newVertex;
+	//	m_phoneBook.insert({ it->first, newVertex });
+
+		moveGameObject(newVertex, it->first);
 	}
+
+	/* Update all gameEntities: */
+//	for (const auto& kv : m_phoneBook) {
+//		if (kv.first == exception){
+//			continue;
+//		}
+//		Vertex* newVertex;
+//		do{
+//			int result = rand() % (m_Vertices->size());
+//			newVertex = m_Vertices->at(result);
+//		} while (newVertex == exceptionVertex);
+//
+//		m_phoneBook[kv.first] = newVertex;
+//	}
 }
 
 /*
