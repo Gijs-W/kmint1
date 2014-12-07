@@ -19,6 +19,7 @@ void Cow::Update(float dt){
 	else if (m_Route.size() == 1){
 		Vertex* target = m_Route.front();
 		m_Route.pop_front();
+
 		m_Graph->moveGameObject(target, eCow);
 
 		m_Graph->ReShuffleAllExcept(eCow);

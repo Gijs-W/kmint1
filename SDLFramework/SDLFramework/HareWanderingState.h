@@ -1,6 +1,6 @@
 #pragma once
 #include "IFSMHare.h"
-#include "Rabbit.h"
+
 
 class HareWanderingState : public IFSMHare {
 

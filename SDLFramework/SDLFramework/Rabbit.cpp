@@ -8,7 +8,7 @@ Rabbit::Rabbit(Graph* graph)
 }
 
 void Rabbit::Update(float dt){
-
+	m_State->Handle(this);
 }
 
 void Rabbit::setRoute(eGameEntity source, eGameEntity target){
