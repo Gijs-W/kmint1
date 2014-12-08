@@ -20,7 +20,7 @@ void HareFleeState::Handle(Rabbit* rabbit){
 
 	}
 
-	if (escapeRoute.size() > 1) {
+	if (escapeRoute.size() >= 1) {
 		Vertex* escapeVertex = escapeRoute.at(escapeRoute.size() - 1 % rand());
 		rabbit->getGraph()->moveGameObject(escapeVertex, eRabbit);
 
