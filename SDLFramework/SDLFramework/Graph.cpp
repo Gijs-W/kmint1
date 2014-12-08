@@ -329,6 +329,13 @@ void Graph::moveGameObject(Vertex* target, eGameEntity entity){
 	target->addGameObject(target_entity);
 //	m_phoneBook.insert({ entity, target });
  	m_phoneBook[entity] = target;
+
+	// notify entities
+	for (auto &vertex : m_phoneBook) {
+		if (vertex.first != entity) {
+			vertex.second->getGameObject(vertex.first)->entityMovedNotification(entity);
+		}
+	}
 }
 
 void Graph::ReShuffleAllExcept(eGameEntity exception){

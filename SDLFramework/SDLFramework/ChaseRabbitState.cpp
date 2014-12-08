@@ -17,3 +17,9 @@ void ChaseRabbitState::Finished(Cow* cow) {
 std::string ChaseRabbitState::GetTexturePath() {
 	return "cow-red.png";
 }
+
+void ChaseRabbitState::entityMovedNotification(Cow *cow, eGameEntity entity) {
+	if (entity == eRabbit) {
+		cow->setRoute(eCow, eRabbit);
+	}
+}

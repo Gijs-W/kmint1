@@ -10,4 +10,5 @@ public:
 	void Handle(Cow* cow);
 	void Finished(Cow* cow);
 	std::string GetTexturePath();
+	void entityMovedNotification(Cow *cow, eGameEntity entity);
 };

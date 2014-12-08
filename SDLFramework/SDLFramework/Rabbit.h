@@ -14,6 +14,5 @@ public:
 
 	IFSMHare* m_State = new HareWanderingState;
 
-	Graph* getGraph() { return m_Graph;  }
 };
 

@@ -14,5 +14,7 @@ public:
 	~Cow();
 
 	std::string getTexturePath() { return m_State->GetTexturePath();  }
+
+	virtual void entityMovedNotification(eGameEntity entity);
 };
 

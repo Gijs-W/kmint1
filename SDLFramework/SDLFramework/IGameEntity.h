@@ -17,5 +17,9 @@ public:
 	virtual void Update(float deltaTime) = 0;
 	virtual void setRoute(eGameEntity source, eGameEntity target) = 0;
 	virtual ~IGameEntity(){};
+
+	Graph* getGraph() { return m_Graph; }
+
+	virtual void entityMovedNotification(eGameEntity entity) {};
 };
 

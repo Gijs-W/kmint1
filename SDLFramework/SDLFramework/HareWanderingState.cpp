@@ -22,14 +22,4 @@ void HareWanderingState::Handle(Rabbit* rabbit){
 
 	}
 
-	// Geen escape routes? GG!
-	//if (mark && escapeRoute.size() >= 1) {
-	//	Vertex* escapeVertex = escapeRoute.at(escapeRoute.size() -1 % rand());
-	//	IGameEntity* rabbit = graph->m_VertexRabbit->takeGameObject(eRabbit);
-	//	escapeVertex->addGameObject(rabbit);
-	//	graph->m_VertexRabbit = escapeVertex;
-	//	graph->calculateRoute(graph->m_VertexCow, graph->m_VertexRabbit);
-	//}
-	
-
 }

@@ -9,7 +9,7 @@ Cow::Cow(Graph* graph)
 }
 
 void Cow::Update(float dt){
-
+	
 	if (m_Route.size() > 1){
 		Vertex* target = m_Route.front();
 		m_Route.pop_front();
@@ -30,13 +30,19 @@ void Cow::Update(float dt){
 	
 	else {
 		m_State->Handle(this);
-	}
+	} 
+
+
+
 }
 
 void Cow::setRoute(eGameEntity source, eGameEntity target){
 	m_Route = m_Graph->getRoute(source, target);
 }
 
+void Cow::entityMovedNotification(eGameEntity entity) {
+	m_State->entityMovedNotification(this, entity);
+}
 
 Cow::~Cow()
 {
