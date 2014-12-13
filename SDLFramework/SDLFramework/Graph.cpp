@@ -340,24 +340,24 @@ void Graph::moveGameObject(Vertex* target, eGameEntity entity){
 
 void Graph::ReShuffleAllExcept(eGameEntity exception){
 
-	Vertex* exceptionVertex = m_phoneBook.at(exception);
+	//Vertex* exceptionVertex = m_phoneBook.at(exception);
 
- 	std::map<eGameEntity, Vertex*>::iterator it = m_phoneBook.begin();
+ //	std::map<eGameEntity, Vertex*>::iterator it = m_phoneBook.begin();
 
-	for (; it != m_phoneBook.end(); it++){
-		if (it->first == exception){
-			continue;
-		}
-		Vertex* newVertex;
-		do{
-			int result = rand() % (m_Vertices->size());
-			newVertex = m_Vertices->at(result);
-		} while (newVertex == exceptionVertex);
+	//for (; it != m_phoneBook.end(); it++){
+	//	if (it->first == exception){
+	//		continue;
+	//	}
+	//	Vertex* newVertex;
+	//	do{
+	//		int result = rand() % (m_Vertices->size());
+	//		newVertex = m_Vertices->at(result);
+	//	} while (newVertex == exceptionVertex);
 
-	//	m_phoneBook[it->first] = newVertex;
-	//	m_phoneBook.insert({ it->first, newVertex });
+	////	m_phoneBook[it->first] = newVertex;
+	////	m_phoneBook.insert({ it->first, newVertex });
 
-		moveGameObject(newVertex, it->first);
+	//	moveGameObject(newVertex, it->first);
 	}
 
 	/* Update all gameEntities: */
@@ -373,7 +373,7 @@ void Graph::ReShuffleAllExcept(eGameEntity exception){
 //
 //		m_phoneBook[kv.first] = newVertex;
 //	}
-}
+//}
 
 /*
 
