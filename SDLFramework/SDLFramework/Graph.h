@@ -32,6 +32,7 @@ public:
 	void moveGameObject(Vertex* target, eGameEntity entity);
 	void addVertex(Vertex* vertex);
 	void Update(float dt);
+	void respawn(eGameEntity entity);
 	~Graph();
 };
 

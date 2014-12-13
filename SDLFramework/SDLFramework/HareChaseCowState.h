@@ -2,12 +2,13 @@
 #include "IFSMHare.h"
 
 
-class HareFleeState : public IFSMHare {
+class HareChaseCowState : public IFSMHare {
 
 public:
-	HareFleeState() {}
-	virtual ~HareFleeState() {}
+	HareChaseCowState() {}
+	virtual ~HareChaseCowState() {}
 
 	void Handle(Rabbit* rabbit);
 	void Finished(Rabbit* rabbit);
+
 };

@@ -80,6 +80,18 @@
     <ClCompile Include="HareFleeState.cpp">
       <Filter>Source Files\FSMHare</Filter>
     </ClCompile>
+    <ClCompile Include="HareAcquireGunState.cpp">
+      <Filter>Source Files\FSMHare</Filter>
+    </ClCompile>
+    <ClCompile Include="HareChaseCowState.cpp">
+      <Filter>Source Files\FSMHare</Filter>
+    </ClCompile>
+    <ClCompile Include="HareAcquirePillState.cpp">
+      <Filter>Source Files\FSMHare</Filter>
+    </ClCompile>
+    <ClCompile Include="CowSleepState.cpp">
+      <Filter>Source Files\FSMCow</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="SDL2.dll" />
@@ -140,6 +152,21 @@
       <Filter>Header Files\FSMHare</Filter>
     </ClInclude>
     <ClInclude Include="HareFleeState.h">
+      <Filter>Header Files\FSMHare</Filter>
+    </ClInclude>
+    <ClInclude Include="HareAcquireGunState.h">
+      <Filter>Header Files\FSMHare</Filter>
+    </ClInclude>
+    <ClInclude Include="HareChaseCowState.h">
+      <Filter>Header Files\FSMHare</Filter>
+    </ClInclude>
+    <ClInclude Include="HareAcquirePillState.h">
+      <Filter>Header Files\FSMHare</Filter>
+    </ClInclude>
+    <ClInclude Include="CowSleepState.h">
+      <Filter>Header Files\FSMCow</Filter>
+    </ClInclude>
+    <ClInclude Include="HareWanderingStateGreen.h">
       <Filter>Header Files\FSMHare</Filter>
     </ClInclude>
   </ItemGroup>

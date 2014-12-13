@@ -1,4 +1,6 @@
 #include "HareFleeState.h"
+#include "HareAcquireGunState.h"
+#include "HareAcquirePillState.h"
 #include "Graph.h"
 #include "Edge.h"
 #include <time.h>
@@ -21,10 +23,15 @@ void HareFleeState::Handle(Rabbit* rabbit){
 	}
 
 	if (escapeRoute.size() >= 1) {
-		Vertex* escapeVertex = escapeRoute.at(escapeRoute.size() - 1 % rand());
+		
+		Vertex* escapeVertex = escapeRoute.at(rand() % (escapeRoute.size()) );
 		rabbit->getGraph()->moveGameObject(escapeVertex, eRabbit);
 
 		delete rabbit->m_State;
-		rabbit->m_State = new HareWanderingState;
+		rabbit->m_State = new HareAcquirePillState;
+	//	rabbit->m_State->Handle(rabbit);
 	}
+}
+
+void HareFleeState::Finished(Rabbit* rabbit) {
 }

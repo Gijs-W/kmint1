@@ -21,5 +21,7 @@ public:
 	Graph* getGraph() { return m_Graph; }
 
 	virtual void entityMovedNotification(eGameEntity entity) {};
+	void clearRoute() { m_Route.clear();  }
+	bool m_hasPill = false;
 };
 

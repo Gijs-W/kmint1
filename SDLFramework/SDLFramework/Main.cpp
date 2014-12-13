@@ -8,6 +8,7 @@
 
 int main(int args[])
 {
+	srand(time(0));
 	//auto window = Window::CreateSDLWindow();
 	auto application = new FWApplication();
 	if (!application->GetWindow())

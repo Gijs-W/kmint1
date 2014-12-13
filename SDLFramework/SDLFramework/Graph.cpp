@@ -212,7 +212,7 @@ void Graph::addVertex(Vertex* vertex){
 list<Vertex*> Graph::calculateRoute(Vertex* source, Vertex* target){
 	if (source == target){
 		//ERROR
-		throw std::invalid_argument("Source and target are the same!");
+		//throw std::invalid_argument("Source and target are the same!");
 	}
 
 	list<Vertex*> route;
@@ -327,7 +327,6 @@ list<Vertex*> Graph::getRoute(eGameEntity source, eGameEntity target){
 void Graph::moveGameObject(Vertex* target, eGameEntity entity){
 	IGameEntity* target_entity = m_phoneBook.at(entity)->takeGameObject(entity);
 	target->addGameObject(target_entity);
-//	m_phoneBook.insert({ entity, target });
  	m_phoneBook[entity] = target;
 
 	// notify entities
@@ -338,42 +337,54 @@ void Graph::moveGameObject(Vertex* target, eGameEntity entity){
 	}
 }
 
+void Graph::respawn(eGameEntity entity) {
+	Vertex* current = m_phoneBook.at(entity);
+	Vertex* newVertex;
+	do {
+		newVertex = m_Vertices->at(rand() % (m_Vertices->size() -1));
+	} while (current == newVertex);
+
+	newVertex->addGameObject(current->takeGameObject(entity));
+	m_phoneBook[entity] = newVertex;
+
+}
+
 void Graph::ReShuffleAllExcept(eGameEntity exception){
 
-	//Vertex* exceptionVertex = m_phoneBook.at(exception);
+	Vertex* exceptionVertex = m_phoneBook.at(exception);
 
- //	std::map<eGameEntity, Vertex*>::iterator it = m_phoneBook.begin();
+ 	std::map<eGameEntity, Vertex*>::iterator it = m_phoneBook.begin();
 
-	//for (; it != m_phoneBook.end(); it++){
-	//	if (it->first == exception){
-	//		continue;
-	//	}
-	//	Vertex* newVertex;
-	//	do{
-	//		int result = rand() % (m_Vertices->size());
-	//		newVertex = m_Vertices->at(result);
-	//	} while (newVertex == exceptionVertex);
+	for (; it != m_phoneBook.end(); it++){
+		if (it->first == exception){
+			continue;
+		}
+		Vertex* newVertex;
+		do{
+			int result = rand() % (m_Vertices->size());
+			newVertex = m_Vertices->at(result);
+		} while (newVertex == exceptionVertex);
 
-	////	m_phoneBook[it->first] = newVertex;
-	////	m_phoneBook.insert({ it->first, newVertex });
+		m_phoneBook[it->first] = newVertex;
+	//	m_phoneBook.insert({ it->first, newVertex });
 
-	//	moveGameObject(newVertex, it->first);
+		moveGameObject(newVertex, it->first);
 	}
 
 	/* Update all gameEntities: */
-//	for (const auto& kv : m_phoneBook) {
-//		if (kv.first == exception){
-//			continue;
-//		}
-//		Vertex* newVertex;
-//		do{
-//			int result = rand() % (m_Vertices->size());
-//			newVertex = m_Vertices->at(result);
-//		} while (newVertex == exceptionVertex);
-//
-//		m_phoneBook[kv.first] = newVertex;
-//	}
-//}
+	/*for (const auto& kv : m_phoneBook) {
+		if (kv.first == exception){
+			continue;
+		}
+		Vertex* newVertex;
+		do{
+			int result = rand() % (m_Vertices->size());
+			newVertex = m_Vertices->at(result);
+		} while (newVertex == exceptionVertex);
+
+		m_phoneBook[kv.first] = newVertex;
+	}*/
+}
 
 /*
 

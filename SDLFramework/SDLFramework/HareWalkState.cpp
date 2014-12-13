@@ -9,5 +9,5 @@ public:
 	virtual ~HareFleeState() {}
 
 	void Handle(Rabbit* rabbit);
-	void Finished(Rabbit* rabbit);
+
 };

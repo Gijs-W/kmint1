@@ -9,11 +9,12 @@ Cow::Cow(Graph* graph)
 }
 
 void Cow::Update(float dt){
-	
+	SetTexture(m_Graph->m_application->LoadTexture(m_State->GetTexturePath()));
 	if (m_Route.size() > 1){
 		Vertex* target = m_Route.front();
 		m_Route.pop_front();
 		m_Graph->moveGameObject(target, eCow);
+
 	}
 	
 	else if (m_Route.size() == 1){
@@ -22,10 +23,10 @@ void Cow::Update(float dt){
 
 		m_Graph->moveGameObject(target, eCow);
 
-		m_Graph->ReShuffleAllExcept(eCow);
+		
 		m_State->Finished(this);
 		m_State->Handle(this);
-		SetTexture(m_Graph->m_application->LoadTexture(m_State->GetTexturePath()));
+		//SetTexture(m_Graph->m_application->LoadTexture(m_State->GetTexturePath()));
 	}
 	
 	else {

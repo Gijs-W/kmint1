@@ -23,3 +23,6 @@ void HareWanderingState::Handle(Rabbit* rabbit){
 	}
 
 }
+
+void HareWanderingState::Finished(Rabbit* rabbit) {
+}

@@ -9,5 +9,6 @@ public:
 	virtual ~HareWanderingState() {}
 
 	void Handle(Rabbit* rabbit);
-
+	void Finished(Rabbit* rabbit);
+	virtual std::string getTexturePath() { return "rabbit-2.png";  }
 };
