@@ -28,7 +28,14 @@ void HareFleeState::Handle(Rabbit* rabbit){
 		rabbit->getGraph()->moveGameObject(escapeVertex, eRabbit);
 
 		delete rabbit->m_State;
-		rabbit->m_State = new HareAcquirePillState;
+
+		int dice = rand() % 6;
+		if (dice > 3) {
+			rabbit->m_State = new HareAcquirePillState;
+		}
+		else {
+			rabbit->m_State = new HareWanderingState;
+		}
 	//	rabbit->m_State->Handle(rabbit);
 	}
 }

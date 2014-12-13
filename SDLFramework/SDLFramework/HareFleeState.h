@@ -3,7 +3,6 @@
 
 
 class HareFleeState : public IFSMHare {
-
 public:
 	HareFleeState() {}
 	virtual ~HareFleeState() {}
