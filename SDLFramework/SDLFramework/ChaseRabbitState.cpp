@@ -12,16 +12,17 @@ void ChaseRabbitState::Finished(Cow* cow) {
 	printf("Rabbit caught\n");
 
  	if (cow->getGraph()->m_phoneBook.at(eRabbit)->getGameObject(eRabbit)->m_hasPill) {
-		delete cow->m_State;
-		cow->m_State = new CowSleepState;
+	
 		cow->clearRoute();
 		cow->getGraph()->respawn(eCow);
 		cow->getGraph()->m_phoneBook.at(eRabbit)->getGameObject(eRabbit)->m_hasPill = false;
+	//	delete cow->m_State; MemLeak! > Causing memory corruption D:
+		cow->m_State = new CowSleepState;
 	}
 	else {
 		cow->clearRoute();
 		cow->getGraph()->respawn(eRabbit);
-		cow->getGraph()->respawn(eCow);
+	//	cow->getGraph()->respawn(eCow);
 	}
 }
 

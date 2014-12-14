@@ -10,8 +10,7 @@ void HareAcquireGunState::Handle(Rabbit* rabbit){
 }
 
 void HareAcquireGunState::Finished(Rabbit* rabbit) {
-	printf("Cow caught\n");
-	rabbit->getGraph()->respawn(eCow);
+	printf("Gun caught\n");
 	delete rabbit->m_State;
 	rabbit->m_State = new HareChaseCowState;
 
