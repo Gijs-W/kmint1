@@ -39,7 +39,7 @@ int main(int args[])
 			case SDL_KEYDOWN:
 				switch (event.key.keysym.scancode){
 					case SDL_SCANCODE_SPACE:
-						graph->Update(0);
+						graph->Update(1);
 						break;
 					default:
 						break;
