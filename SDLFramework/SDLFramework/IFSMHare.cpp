@@ -8,6 +8,7 @@ IFSMHare::IFSMHare(Rabbit* rabbit) : m_Rabbit{ rabbit } {
 }
 
 void IFSMHare::Handle() {
+	m_Rabbit->SetTexture(m_Rabbit->getGraph()->m_application->LoadTexture(GetTexturePath()));
 	if (m_Rabbit->m_Route.size() >= 1){
 		Vertex* target = m_Rabbit->m_Route.front();
 		m_Rabbit->m_Route.pop_front();

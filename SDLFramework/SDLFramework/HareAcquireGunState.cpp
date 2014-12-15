@@ -16,6 +16,7 @@ void HareAcquireGunState::nextVertex(Vertex* target) {
 
 	if (target->getGameObject(eGun) != nullptr) {
 		printf("Hare - Gun found!\n");
+		m_Rabbit->setState(new HareChaseCowState(m_Rabbit));
 	}
 
 }

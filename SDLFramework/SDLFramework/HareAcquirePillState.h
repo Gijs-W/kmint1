@@ -11,4 +11,6 @@ public:
 	virtual void nextVertex(Vertex* vertex);
 	virtual void generateRoute();
 
+	virtual std::string GetTexturePath() { return  "rabbit-2-yellow.png"; };
+
 };
