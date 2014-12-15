@@ -6,7 +6,7 @@
 void HareAcquirePillState::Handle(Rabbit* rabbit){
 	rabbit->setRoute(eRabbit, ePill);
 
-
+	printf("HareAcquirePillState\n");
 }
 
 void HareAcquirePillState::Finished(Rabbit* rabbit) {

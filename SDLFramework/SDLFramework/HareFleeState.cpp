@@ -6,7 +6,7 @@
 #include <time.h>
 #include "Rabbit.h"
 void HareFleeState::Handle(Rabbit* rabbit){
-
+	printf("HareFleeState\n");
 	std::vector<Edge*>* edges = rabbit->getGraph()->m_phoneBook.at(eRabbit)->getEdges();
 
 	std::vector<Vertex*> escapeRoute;
@@ -34,9 +34,9 @@ void HareFleeState::Handle(Rabbit* rabbit){
 			rabbit->m_State = new HareAcquirePillState;
 		}
 		else {
-			rabbit->m_State = new HareWanderingState;
+			rabbit->m_State = new HareAcquireGunState;
 		}
-	//	rabbit->m_State->Handle(rabbit);
+		
 	}
 }
 

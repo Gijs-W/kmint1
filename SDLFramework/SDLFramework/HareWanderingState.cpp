@@ -6,6 +6,9 @@
 #include "Rabbit.h"
 void HareWanderingState::Handle(Rabbit* rabbit){
 
+
+	printf("HareWanderingState\n");
+
 	srand(time(NULL));
 	std::vector<Edge*>* edges = rabbit->getGraph()->m_phoneBook.at(eRabbit)->getEdges();
 
@@ -17,10 +20,11 @@ void HareWanderingState::Handle(Rabbit* rabbit){
 			delete rabbit->m_State;
 			rabbit->m_State = new HareFleeState;
 			rabbit->m_State->Handle(rabbit);
-			break;
+			return;
 		}
 
 	}
+	rabbit->clearRoute();
 
 }
 

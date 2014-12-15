@@ -46,7 +46,7 @@ void Vertex::Draw()
 		mApplication->DrawLine(mX, mY, target->mX, target->mY);
 		int x = mX / 2 + target->mX / 2;
 		int y = mY / 2 + target->mY / 2;
-		mApplication->DrawText(std::to_string(edge->getDistance()), x, y);
+ 		mApplication->DrawText(std::to_string(edge->getDistance()), x, y);
 	}
 	mApplication->SetColor(Color(255, 255, 255, 255));
 

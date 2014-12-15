@@ -6,11 +6,11 @@
 void HareAcquireGunState::Handle(Rabbit* rabbit){
 	rabbit->setRoute(eRabbit, eGun);
 
-
+	printf("HareAcquireGunState\n");
 }
 
 void HareAcquireGunState::Finished(Rabbit* rabbit) {
-	printf("Gun caught\n");
+	printf("Rabbit - Gun caught\n");
 	delete rabbit->m_State;
 	rabbit->m_State = new HareChaseCowState;
 

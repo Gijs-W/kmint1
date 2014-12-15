@@ -4,24 +4,25 @@
 #include "Graph.h"
 #include "CowSleepState.h"
 
+
 void ChaseRabbitState::Handle(Cow* cow) {
 	cow->setRoute(eCow, eRabbit);
 }
 
 void ChaseRabbitState::Finished(Cow* cow) {
-	printf("Rabbit caught\n");
+	printf("Cow - Rabbit caught\n");
 
  	if (cow->getGraph()->m_phoneBook.at(eRabbit)->getGameObject(eRabbit)->m_hasPill) {
 	
 		cow->clearRoute();
 		cow->getGraph()->respawn(eCow);
-		cow->getGraph()->m_phoneBook.at(eRabbit)->getGameObject(eRabbit)->m_hasPill = false;
+	
 	//	delete cow->m_State; MemLeak! > Causing memory corruption D:
 		cow->m_State = new CowSleepState;
 	}
 	else {
 		cow->clearRoute();
-		cow->getGraph()->respawn(eRabbit);
+		cow->getGraph()->respawn(eCow);
 	//	cow->getGraph()->respawn(eCow);
 	}
 }

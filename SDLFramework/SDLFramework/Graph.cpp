@@ -8,7 +8,7 @@
 #include <math.h>       /* pow */
 #include <stdlib.h>     /* abs */
 #include <stdexcept>
-
+#include <iostream>
 bool sortByGuessedTotalDistance(Vertex *lhs, Vertex *rhs) { //todo: give this method a proper position in the code
 	return lhs->m_GuessedTotalDistance < rhs->m_GuessedTotalDistance;
 }
@@ -302,17 +302,16 @@ list<Vertex*> Graph::calculateRoute(Vertex* source, Vertex* target){
 void Graph::Update(float dt){
 
 	/* Update all gameEntities: */
-	
- 	m_phoneBook.at(eCow)->getGameObject(eCow)->Update(dt);
 
-	for (auto& kv : m_phoneBook) {
-		if (kv.first != eCow){
+	m_phoneBook.at(eRabbit)->getGameObject(eRabbit)->Update(dt);
+	m_phoneBook.at(eCow)->getGameObject(eCow)->Update(dt);
+
+	/*for (auto& kv : m_phoneBook) {
+		if (kv.first != eCow && kv.first != eRabbit){
 			IGameEntity *entity = kv.second->getGameObject(kv.first);
-
-
 			entity->Update(dt);
 		}
-	}
+	}*/
 }
 
 list<Vertex*> Graph::getRoute(eGameEntity source, eGameEntity target){
@@ -343,9 +342,27 @@ void Graph::respawn(eGameEntity entity) {
 	do {
 		newVertex = m_Vertices->at(rand() % (m_Vertices->size() -1));
 	} while (current == newVertex);
-
 	newVertex->addGameObject(current->takeGameObject(entity));
+
+
+
+
 	m_phoneBook[entity] = newVertex;
+	std::cout << "Respawning " << entity << std::endl;
+	if (entity == eCow || entity == eRabbit) {
+		Rabbit* rabbit = (Rabbit*) m_phoneBook[eRabbit]->getGameObject(eRabbit);
+		rabbit->setState(new HareWanderingState);
+		rabbit->m_hasPill = false;
+	}
+
+	// notify entities
+	for (auto &vertex : m_phoneBook) {
+		if (vertex.first != entity) {
+			vertex.second->getGameObject(vertex.first)->entityMovedNotification(entity);
+		}
+	}
+
+//m_phoneBook.at(eRabbit)->getGameObject(eRabbit)->clearRoute();
 
 }
 
