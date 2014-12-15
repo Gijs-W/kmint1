@@ -9,9 +9,10 @@ class IGameEntity : public IGameObject
 {
 protected:
 	eGameEntity m_Enum;
-	std::list<Vertex*> m_Route;
+	
 	Graph* m_Graph;
 public:
+	std::list<Vertex*> m_Route;
 	IGameEntity(){};
 	eGameEntity getEnum(){ return m_Enum; };
 	virtual void Update(float deltaTime) = 0;

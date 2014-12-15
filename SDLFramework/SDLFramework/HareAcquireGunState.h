@@ -5,10 +5,9 @@
 class HareAcquireGunState : public IFSMHare {
 
 public:
-	HareAcquireGunState() {}
+	HareAcquireGunState(Rabbit* rabbit);
 	virtual ~HareAcquireGunState() {}
 
-	void Handle(Rabbit* rabbit);
-	void Finished(Rabbit* rabbit);
-	std::string GetTexturePath() { return  "rabbit-2-red.png"; };
+	virtual void nextVertex(Vertex* vertex);
+	virtual void generateRoute();
 };

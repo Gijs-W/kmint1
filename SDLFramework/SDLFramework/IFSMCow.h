@@ -12,6 +12,5 @@ public:
 	virtual void Finished(Cow* cow) = 0;
 	virtual std::string GetTexturePath() = 0;
 
-
 	virtual void entityMovedNotification(Cow *cow, eGameEntity entity) {};
 };

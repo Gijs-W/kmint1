@@ -3,16 +3,19 @@
 #include "Rabbit.h"
 #include "HareChaseCowState.h"
 #include "HareWanderingState.h"
-void HareChaseCowState::Handle(Rabbit* rabbit){
-	rabbit->setRoute(eRabbit, eCow);
-	printf("Rabbit - Chasing cow!\n");
-
+HareChaseCowState::HareChaseCowState(Rabbit* rabbit)  {
+	m_Rabbit = rabbit;
+	generateRoute();
 }
 
-void HareChaseCowState::Finished(Rabbit* rabbit) {
-	printf("Rabbit - Cow caught!\n");
-	rabbit->getGraph()->respawn(eCow);
-	delete rabbit->m_State;
-	rabbit->m_State = new HareWanderingState;
+void HareChaseCowState::generateRoute() {
+	m_Rabbit->setRoute(eRabbit, eCow);
+}
+
+void HareChaseCowState::nextVertex(Vertex* target) {
+
+	if (target->getGameObject(eCow) != nullptr) {
+		printf("Hare - Cow caught!\n");
+	}
 
 }

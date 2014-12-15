@@ -2,17 +2,23 @@
 #include "Edge.h"
 #include "Rabbit.h"
 #include "HareAcquirePillState.h"
-#include "HareWanderingStateGreen.h"
-void HareAcquirePillState::Handle(Rabbit* rabbit){
-	rabbit->setRoute(eRabbit, ePill);
+#include "HareWanderingState.h"
 
-	printf("HareAcquirePillState\n");
+HareAcquirePillState::HareAcquirePillState(Rabbit* rabbit)  {
+	m_Rabbit = rabbit;
+	generateRoute();
 }
 
-void HareAcquirePillState::Finished(Rabbit* rabbit) {
-	printf("Pill caught\n");
-	delete rabbit->m_State;
-	rabbit->m_hasPill = true;
-	rabbit->m_State = new HareWanderingStateGreen;
+void HareAcquirePillState::generateRoute() {
+	m_Rabbit->setRoute(eRabbit, ePill);
+}
+
+void HareAcquirePillState::nextVertex(Vertex* target) {
+
+	if (target->getGameObject(ePill) != nullptr) {
+		printf("Hare -Pill found!\n");
+		m_Rabbit->m_hasPill = true;
+		m_Rabbit->setState(new HareWanderingState(m_Rabbit));
+	}
 
 }

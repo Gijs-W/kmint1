@@ -4,9 +4,10 @@
 
 class HareFleeState : public IFSMHare {
 public:
-	HareFleeState() {}
+	HareFleeState(Rabbit* rabbit);
 	virtual ~HareFleeState() {}
 
-	void Handle(Rabbit* rabbit);
-	void Finished(Rabbit* rabbit);
+	void Handle();
+	virtual void nextVertex(Vertex* vertex) {};
+	virtual void generateRoute() {};
 };

@@ -351,7 +351,7 @@ void Graph::respawn(eGameEntity entity) {
 	std::cout << "Respawning " << entity << std::endl;
 	if (entity == eCow || entity == eRabbit) {
 		Rabbit* rabbit = (Rabbit*) m_phoneBook[eRabbit]->getGameObject(eRabbit);
-		rabbit->setState(new HareWanderingState);
+		rabbit->setState(new HareWanderingState(rabbit));
 		rabbit->m_hasPill = false;
 	}
 

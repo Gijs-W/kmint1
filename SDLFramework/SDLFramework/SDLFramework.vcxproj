@@ -97,6 +97,7 @@
     <ClCompile Include="HareChaseCowState.cpp" />
     <ClCompile Include="HareFleeState.cpp" />
     <ClCompile Include="HareWanderingState.cpp" />
+    <ClCompile Include="IFSMHare.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Pill.cpp" />
     <ClCompile Include="Rabbit.cpp" />
@@ -122,7 +123,6 @@
     <ClInclude Include="HareChaseCowState.h" />
     <ClInclude Include="HareFleeState.h" />
     <ClInclude Include="HareWanderingState.h" />
-    <ClInclude Include="HareWanderingStateGreen.h" />
     <ClInclude Include="IFSMCow.h" />
     <ClInclude Include="IFSMHare.h" />
     <ClInclude Include="IGameEntity.h" />

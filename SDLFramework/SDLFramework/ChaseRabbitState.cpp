@@ -10,10 +10,9 @@ void ChaseRabbitState::Handle(Cow* cow) {
 }
 
 void ChaseRabbitState::Finished(Cow* cow) {
-	printf("Cow - Rabbit caught\n");
-
  	if (cow->getGraph()->m_phoneBook.at(eRabbit)->getGameObject(eRabbit)->m_hasPill) {
 	
+		printf("Cow - Hare used sleeping pill! ");
 		cow->clearRoute();
 		cow->getGraph()->respawn(eCow);
 	
@@ -21,9 +20,9 @@ void ChaseRabbitState::Finished(Cow* cow) {
 		cow->m_State = new CowSleepState;
 	}
 	else {
+		printf("Cow - Rabbit caught\n");
 		cow->clearRoute();
-		cow->getGraph()->respawn(eCow);
-	//	cow->getGraph()->respawn(eCow);
+		cow->getGraph()->respawn(eRabbit);
 	}
 }
 

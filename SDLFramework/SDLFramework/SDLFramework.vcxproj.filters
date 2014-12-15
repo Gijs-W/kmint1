@@ -92,6 +92,9 @@
     <ClCompile Include="CowSleepState.cpp">
       <Filter>Source Files\FSMCow</Filter>
     </ClCompile>
+    <ClCompile Include="IFSMHare.cpp">
+      <Filter>Source Files\FSMHare</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="SDL2.dll" />
@@ -165,9 +168,6 @@
     </ClInclude>
     <ClInclude Include="CowSleepState.h">
       <Filter>Header Files\FSMCow</Filter>
-    </ClInclude>
-    <ClInclude Include="HareWanderingStateGreen.h">
-      <Filter>Header Files\FSMHare</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

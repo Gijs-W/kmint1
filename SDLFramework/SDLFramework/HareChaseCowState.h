@@ -5,10 +5,9 @@
 class HareChaseCowState : public IFSMHare {
 
 public:
-	HareChaseCowState() {}
+	HareChaseCowState(Rabbit* rabbit);
 	virtual ~HareChaseCowState() {}
 
-	void Handle(Rabbit* rabbit);
-	void Finished(Rabbit* rabbit);
-	std::string GetTexturePath() { return  "rabbit-2-red.png"; };
+	virtual void nextVertex(Vertex* vertex);
+	virtual void generateRoute();
 };

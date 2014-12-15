@@ -5,10 +5,10 @@
 class HareAcquirePillState : public IFSMHare {
 
 public:
-	HareAcquirePillState() {}
+	HareAcquirePillState(Rabbit* rabbit);
 	virtual ~HareAcquirePillState() {}
 
-	void Handle(Rabbit* rabbit);
-	void Finished(Rabbit* rabbit);
+	virtual void nextVertex(Vertex* vertex);
+	virtual void generateRoute();
 
 };

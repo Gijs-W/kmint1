@@ -1,5 +1,5 @@
 #include "Cow.h"
-
+#include <iostream>
 Cow::Cow(Graph* graph)
 {
 	m_Enum = eGameEntity::eCow;
@@ -10,6 +10,7 @@ Cow::Cow(Graph* graph)
 
 void Cow::Update(float dt){
 	SetTexture(m_Graph->m_application->LoadTexture(m_State->GetTexturePath()));
+	std::cout << "Cow: Current route count: " << m_Route.size() << std::endl;
 	if (m_Route.size() > 1){
 		Vertex* target = m_Route.front();
 		m_Route.pop_front();
