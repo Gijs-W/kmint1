@@ -15,6 +15,12 @@ bool sortByGuessedTotalDistance(Vertex *lhs, Vertex *rhs) { //todo: give this me
 
 Graph::Graph(FWApplication* application)
 {
+
+	IGameEntity* rabbit = new Rabbit(this);
+	SDL_Texture* rabitTexture = application->LoadTexture("rabbit-2.png");//todo: delete
+	rabbit->SetTexture(rabitTexture);
+	rabbit->SetSize(32, 32);
+
 	m_application = application;
 	m_Vertices = new vector <Vertex*>;
 	IGameEntity* cow = new Cow(this);
@@ -22,10 +28,7 @@ Graph::Graph(FWApplication* application)
 	cow->SetTexture(cowTexture);
 	cow->SetSize(32, 32);
 
-	IGameEntity* rabbit = new Rabbit(this);
-	SDL_Texture* rabitTexture = application->LoadTexture("rabbit-2.png");//todo: delete
-	rabbit->SetTexture(rabitTexture);
-	rabbit->SetSize(32, 32);
+
 
 	IGameEntity* pill = new Pill(this);
 	SDL_Texture* pillTexture = application->LoadTexture("pill.png");//todo: delete
@@ -156,10 +159,12 @@ Graph::Graph(FWApplication* application)
 	vertex2->ConnectTo(vertex7, 2600);
 	vertex7->ConnectTo(vertex2, 2600);
 
-	vertex1->addGameObject(cow);
-	m_phoneBook.insert({ eCow, vertex1 });
 	vertex5->addGameObject(rabbit);
 	m_phoneBook.insert({ eRabbit, vertex5 });
+
+	vertex1->addGameObject(cow);
+	m_phoneBook.insert({ eCow, vertex1 });
+
 	vertex10->addGameObject(pill);
 	m_phoneBook.insert({ ePill, vertex10 });
 	vertex14->addGameObject(metalgun);
@@ -349,11 +354,7 @@ void Graph::respawn(eGameEntity entity) {
 
 	m_phoneBook[entity] = newVertex;
 	std::cout << "Respawning " << entity << std::endl;
-	if (entity == eCow || entity == eRabbit) {
-		Rabbit* rabbit = (Rabbit*) m_phoneBook[eRabbit]->getGameObject(eRabbit);
-		rabbit->setState(new HareWanderingState(rabbit));
-		rabbit->m_hasPill = false;
-	}
+
 
 	// notify entities
 	for (auto &vertex : m_phoneBook) {

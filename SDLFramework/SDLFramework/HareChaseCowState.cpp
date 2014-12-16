@@ -6,6 +6,7 @@
 HareChaseCowState::HareChaseCowState(Rabbit* rabbit)  {
 	m_Rabbit = rabbit;
 	generateRoute();
+	printf("HareChaseCowState\n");
 }
 
 void HareChaseCowState::generateRoute() {

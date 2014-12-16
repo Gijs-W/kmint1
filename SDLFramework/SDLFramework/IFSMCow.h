@@ -6,11 +6,14 @@ class Vertex;
 class Cow;
 class Graph;
 class IFSMCow {
-
+protected:
+	Cow* m_Cow;
 public:
-	virtual void Handle(Cow* cow) = 0;
-	virtual void Finished(Cow* cow) = 0;
-	virtual std::string GetTexturePath() = 0;
+	IFSMCow() {};
+	IFSMCow(Cow* cow);
+	virtual void Handle();
+	virtual std::string GetTexturePath() { return  "rabbit-2.png"; };
 
-	virtual void entityMovedNotification(Cow *cow, eGameEntity entity) {};
+	virtual void nextVertex(Vertex* vertex) = 0;
+	virtual void generateRoute() = 0;
 };

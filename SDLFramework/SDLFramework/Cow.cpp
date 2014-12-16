@@ -9,31 +9,9 @@ Cow::Cow(Graph* graph)
 }
 
 void Cow::Update(float dt){
+	
+	m_State->Handle();
 	SetTexture(m_Graph->m_application->LoadTexture(m_State->GetTexturePath()));
-	std::cout << "Cow: Current route count: " << m_Route.size() << std::endl;
-	if (m_Route.size() > 1){
-		Vertex* target = m_Route.front();
-		m_Route.pop_front();
-		m_Graph->moveGameObject(target, eCow);
-
-	}
-	
-	else if (m_Route.size() == 1){
-		Vertex* target = m_Route.front();
-		m_Route.pop_front();
-
-		m_Graph->moveGameObject(target, eCow);
-
-		
-		m_State->Finished(this);
-		m_State->Handle(this);
-		//SetTexture(m_Graph->m_application->LoadTexture(m_State->GetTexturePath()));
-	}
-	
-	else {
-		m_State->Handle(this);
-	} 
-
 
 
 }
@@ -43,7 +21,7 @@ void Cow::setRoute(eGameEntity source, eGameEntity target){
 }
 
 void Cow::entityMovedNotification(eGameEntity entity) {
-	m_State->entityMovedNotification(this, entity);
+//	m_State->entityMovedNotification(this, entity);
 }
 
 Cow::~Cow()

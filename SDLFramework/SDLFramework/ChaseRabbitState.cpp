@@ -3,35 +3,34 @@
 #include "Cow.h"
 #include "Graph.h"
 #include "CowSleepState.h"
-
-
-void ChaseRabbitState::Handle(Cow* cow) {
-	cow->setRoute(eCow, eRabbit);
+#include "Rabbit.h"
+ChaseRabbitState::ChaseRabbitState(Cow* cow) {
+	m_Cow = cow;
+	generateRoute();
 }
 
-void ChaseRabbitState::Finished(Cow* cow) {
- 	if (cow->getGraph()->m_phoneBook.at(eRabbit)->getGameObject(eRabbit)->m_hasPill) {
-	
-		printf("Cow - Hare used sleeping pill! ");
-		cow->clearRoute();
-		cow->getGraph()->respawn(eCow);
-	
-	//	delete cow->m_State; MemLeak! > Causing memory corruption D:
-		cow->m_State = new CowSleepState;
-	}
-	else {
-		printf("Cow - Rabbit caught\n");
-		cow->clearRoute();
-		cow->getGraph()->respawn(eRabbit);
-	}
+
+void ChaseRabbitState::generateRoute() {
+	m_Cow->setRoute(eCow, eRabbit);
 }
 
-std::string ChaseRabbitState::GetTexturePath() {
-	return "cow-red.png";
-}
+void ChaseRabbitState::nextVertex(Vertex* target) {
+	if (target->getGameObject(eRabbit) != nullptr) {
+		
+		if (target->getGameObject(eRabbit)->m_hasPill) {
+			printf("Cow - Going to sleep mode!\n");
+			m_Cow->getGraph()->respawn(eCow);
+			m_Cow->m_State = new CowSleepState(m_Cow);
 
-void ChaseRabbitState::entityMovedNotification(Cow *cow, eGameEntity entity) {
-	if (entity == eRabbit) {
-		cow->setRoute(eCow, eRabbit);
+			Rabbit* rabbit = (Rabbit*)target->getGameObject(eRabbit);
+			rabbit->setState(new HareWanderingState(rabbit));
+			rabbit->m_hasPill = false;
+		}
+		else {
+			printf("Cow - Rabbit caught!\n");
+			m_Cow->getGraph()->respawn(eRabbit);
+		}
+		
 	}
+
 }

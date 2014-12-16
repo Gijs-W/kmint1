@@ -4,11 +4,11 @@
 class ChaseRabbitState : public IFSMCow {
 
 public:
-	ChaseRabbitState() {}
+	ChaseRabbitState(Cow* cow);
 	virtual ~ChaseRabbitState() {}
 
-	void Handle(Cow* cow);
-	void Finished(Cow* cow);
-	std::string GetTexturePath();
-	void entityMovedNotification(Cow *cow, eGameEntity entity);
+	virtual void nextVertex(Vertex* vertex);
+	virtual void generateRoute();
+
+	virtual std::string GetTexturePath() { return  "cow-red.png"; };
 };

@@ -3,19 +3,18 @@
 #include "Cow.h"
 #include "Graph.h"
 
+CowSleepState::CowSleepState(Cow* cow) {
+	m_Cow = cow;
+}
 
-void CowSleepState::Handle(Cow* cow) {
+void CowSleepState::generateRoute() {
 	if (sleepRounds > 5) {
-		delete cow->m_State;
-		cow->m_State = new ChaseRabbitState;
+		m_Cow->m_State = new ChaseRabbitState(m_Cow);
 	}
 	++sleepRounds;
 }
 
-void CowSleepState::Finished(Cow* cow) {
-
+void CowSleepState::nextVertex(Vertex* vertex) {
+ // 
 }
 
-std::string CowSleepState::GetTexturePath() {
-	return "cow-hulk.png";
-}

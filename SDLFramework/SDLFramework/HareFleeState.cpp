@@ -7,6 +7,7 @@
 #include "Rabbit.h"
 HareFleeState::HareFleeState(Rabbit* rabbit) {
 	m_Rabbit = rabbit;
+	printf("HareFleeState\n");
 }
 void HareFleeState::Handle(){
 	printf("HareFleeState\n");
@@ -26,7 +27,7 @@ void HareFleeState::Handle(){
 	}
 
 	if (escapeRoute.size() >= 1) {
-		
+		printf("Rabbit - Escape round found!\n");
 		Vertex* escapeVertex = escapeRoute.at(rand() % (escapeRoute.size()) );
 		m_Rabbit->getGraph()->moveGameObject(escapeVertex, eRabbit);
 

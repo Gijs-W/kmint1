@@ -7,6 +7,7 @@
 HareAcquirePillState::HareAcquirePillState(Rabbit* rabbit)  {
 	m_Rabbit = rabbit;
 	generateRoute();
+	printf("HareAcquirePillState\n");
 }
 
 void HareAcquirePillState::generateRoute() {

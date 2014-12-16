@@ -5,8 +5,10 @@
 #include "Edge.h"
 #include <time.h>
 #include "Rabbit.h"
+#include "HareAcquireGunState.h"
 HareWanderingState::HareWanderingState(Rabbit* rabbit) {
 	m_Rabbit = rabbit;
+	printf("HareWanderingState\n");
 }
 void HareWanderingState::Handle(){
 
@@ -45,11 +47,22 @@ void HareWanderingState::run() {
 	}
 
 	if (escapeRoute.size() >= 1) {
-
+		printf("Rabbit - Escape route found!\n");
 		Vertex* escapeVertex = escapeRoute.at(rand() % (escapeRoute.size()));
 		m_Rabbit->getGraph()->moveGameObject(escapeVertex, eRabbit);
 
-		m_Rabbit->setState(new HareAcquirePillState(m_Rabbit));
+		int dice = rand() % 6;
+
+		if (dice > 3)
+		{
+			m_Rabbit->setState(new HareAcquireGunState(m_Rabbit));
+		}
+		else {
+			m_Rabbit->setState(new HareAcquirePillState(m_Rabbit));
+		}
+
+		
+	
 
 
 	}

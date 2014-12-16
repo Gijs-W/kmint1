@@ -6,6 +6,7 @@
 HareAcquireGunState::HareAcquireGunState(Rabbit* rabbit)  {
 	m_Rabbit = rabbit;
 	generateRoute();
+	printf("HareAcquireGunState\n");
 }
 
 void HareAcquireGunState::generateRoute() {

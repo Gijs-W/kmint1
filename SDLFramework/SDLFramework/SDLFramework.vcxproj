@@ -84,10 +84,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AcquireGunState.cpp" />
     <ClCompile Include="ChaseRabbitState.cpp" />
     <ClCompile Include="Cow.cpp" />
     <ClCompile Include="CowSleepState.cpp" />
+    <ClCompile Include="CowStartState.cpp" />
     <ClCompile Include="Edge.cpp" />
     <ClCompile Include="FWApplication.cpp" />
     <ClCompile Include="Graph.cpp" />
@@ -95,24 +95,23 @@
     <ClCompile Include="HareAcquireGunState.cpp" />
     <ClCompile Include="HareAcquirePillState.cpp" />
     <ClCompile Include="HareChaseCowState.cpp" />
-    <ClCompile Include="HareFleeState.cpp" />
     <ClCompile Include="HareWanderingState.cpp" />
+    <ClCompile Include="IFSMCow.cpp" />
     <ClCompile Include="IFSMHare.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Pill.cpp" />
     <ClCompile Include="Rabbit.cpp" />
     <ClCompile Include="Vertex.cpp" />
-    <ClCompile Include="WanderingState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="SDL2.dll" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AcquireGunState.h" />
     <ClInclude Include="ChaseRabbitState.h" />
     <ClInclude Include="Config.h" />
     <ClInclude Include="Cow.h" />
     <ClInclude Include="CowSleepState.h" />
+    <ClInclude Include="CowStartState.h" />
     <ClInclude Include="Edge.h" />
     <ClInclude Include="eGameEntity.h" />
     <ClInclude Include="FWApplication.h" />
@@ -121,7 +120,6 @@
     <ClInclude Include="HareAcquireGunState.h" />
     <ClInclude Include="HareAcquirePillState.h" />
     <ClInclude Include="HareChaseCowState.h" />
-    <ClInclude Include="HareFleeState.h" />
     <ClInclude Include="HareWanderingState.h" />
     <ClInclude Include="IFSMCow.h" />
     <ClInclude Include="IFSMHare.h" />
@@ -130,7 +128,6 @@
     <ClInclude Include="Pill.h" />
     <ClInclude Include="Rabbit.h" />
     <ClInclude Include="Vertex.h" />
-    <ClInclude Include="WanderingState.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

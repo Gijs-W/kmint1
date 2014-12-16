@@ -5,11 +5,11 @@ class CowSleepState : public IFSMCow {
 private:
 	int sleepRounds = 0;
 public:
-	CowSleepState() {}
+	CowSleepState(Cow* cow);
 	virtual ~CowSleepState() {}
 
-	void Handle(Cow* cow);
-	void Finished(Cow* cow);
-	std::string GetTexturePath();
+	virtual void nextVertex(Vertex* vertex);
+	virtual void generateRoute();
 
+	virtual std::string GetTexturePath() { return  "cow-hulk.png"; };
 };
