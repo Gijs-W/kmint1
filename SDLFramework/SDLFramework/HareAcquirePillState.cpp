@@ -16,10 +16,22 @@ void HareAcquirePillState::generateRoute() {
 
 void HareAcquirePillState::nextVertex(Vertex* target) {
 
-	if (target->getGameObject(ePill) != nullptr) {
+	if (target->getGameObject(ePill) != nullptr && containsSelf(target)) {
 		printf("Hare -Pill found!\n");
 		m_Rabbit->m_hasPill = true;
 		m_Rabbit->setState(new HareWanderingState(m_Rabbit));
 	}
+
+}
+
+bool HareAcquirePillState::shouldMove(Vertex* target) {
+	bool containsCow = (target->getGameObject(eCow) != nullptr);
+
+	if (containsCow) {
+		m_Rabbit->setState(new HareWanderingState(m_Rabbit));
+
+	}
+
+	return !containsCow;
 
 }

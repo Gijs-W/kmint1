@@ -17,3 +17,7 @@ void IFSMCow::Handle() {
 		generateRoute();
 	}
 }
+
+bool IFSMCow::containsSelf(Vertex* vertex) {
+	return vertex->getGameObject(eCow) != nullptr;
+}

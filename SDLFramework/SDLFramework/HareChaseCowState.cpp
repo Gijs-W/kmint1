@@ -15,7 +15,7 @@ void HareChaseCowState::generateRoute() {
 
 void HareChaseCowState::nextVertex(Vertex* target) {
 
-	if (target->getGameObject(eCow) != nullptr) {
+	if (target->getGameObject(eCow) != nullptr && containsSelf(target)) {
 		printf("Hare - Cow caught!\n");
 		m_Rabbit->getGraph()->respawn(eCow);
 		m_Rabbit->setState(new HareWanderingState(m_Rabbit));

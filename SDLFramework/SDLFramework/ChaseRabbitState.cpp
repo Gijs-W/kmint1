@@ -15,7 +15,7 @@ void ChaseRabbitState::generateRoute() {
 }
 
 void ChaseRabbitState::nextVertex(Vertex* target) {
-	if (target->getGameObject(eRabbit) != nullptr) {
+	if (target->getGameObject(eRabbit) != nullptr && containsSelf(target)) {
 		
 		if (target->getGameObject(eRabbit)->m_hasPill) {
 			printf("Cow - Going to sleep mode!\n");
@@ -28,6 +28,9 @@ void ChaseRabbitState::nextVertex(Vertex* target) {
 		}
 		else {
 			printf("Cow - Rabbit caught!\n");
+
+			Rabbit* rabbit = (Rabbit*)target->getGameObject(eRabbit);
+			rabbit->setState(new HareWanderingState(rabbit));
 			m_Cow->getGraph()->respawn(eRabbit);
 		}
 		

@@ -8,6 +8,7 @@ public:
 	HareAcquireGunState(Rabbit* rabbit);
 	virtual ~HareAcquireGunState() {}
 
+	bool shouldMove(Vertex* vertex);
 	virtual void nextVertex(Vertex* vertex);
 	virtual void generateRoute();
 

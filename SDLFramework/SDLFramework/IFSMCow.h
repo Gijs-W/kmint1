@@ -16,4 +16,6 @@ public:
 
 	virtual void nextVertex(Vertex* vertex) = 0;
 	virtual void generateRoute() = 0;
+
+	bool containsSelf(Vertex* vertex);
 };

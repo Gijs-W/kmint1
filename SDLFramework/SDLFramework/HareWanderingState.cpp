@@ -12,6 +12,8 @@ HareWanderingState::HareWanderingState(Rabbit* rabbit) {
 }
 void HareWanderingState::Handle(){
 
+	if (m_Rabbit->m_hasPill) return;
+
 	srand(time(NULL));
 	std::vector<Edge*>* edges = m_Rabbit->getGraph()->m_phoneBook.at(eRabbit)->getEdges();
 
