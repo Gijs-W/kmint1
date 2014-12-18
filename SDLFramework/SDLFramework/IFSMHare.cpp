@@ -15,9 +15,10 @@ void IFSMHare::Handle() {
 		if (shouldMove(target)) {
 			
 			m_Rabbit->getGraph()->moveGameObject(target, eRabbit);
+			m_Rabbit->m_Route.pop_front();
 			nextVertex(target);
 		}
-		m_Rabbit->m_Route.pop_front();
+		
 	}
 	else {
 		generateRoute();

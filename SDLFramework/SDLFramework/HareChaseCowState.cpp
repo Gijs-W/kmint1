@@ -13,6 +13,19 @@ void HareChaseCowState::generateRoute() {
 	m_Rabbit->setRoute(eRabbit, eCow);
 }
 
+void HareChaseCowState::Handle() {
+	IFSMHare::Handle();
+
+	std::vector<Edge*>* edges = m_Rabbit->getGraph()->m_phoneBook.at(eRabbit)->getEdges();
+
+	Vertex* cow = m_Rabbit->getGraph()->m_phoneBook.at(eCow);
+
+	for (auto &edge : *edges) {
+		Vertex* vertex = edge->getDestination();
+		nextVertex(vertex);
+	}
+}
+
 void HareChaseCowState::nextVertex(Vertex* target) {
 
 	if (target->getGameObject(eCow) != nullptr && containsSelf(target)) {
