@@ -21,6 +21,7 @@ int main(int args[])
 	application->SetColor(Color(255, 10, 40, 255));
 
 	Game* game = new Game(application);
+	int TimeRemaining = 30;
 
 	//while (true){}
 	while (application->IsRunning())
@@ -51,7 +52,16 @@ int main(int args[])
 		application->UpdateGameObjects();
 		application->RenderGameObjects();
 		game->Update(application->GetDeltaTime());
+		if (TimeRemaining != game->GetTimeRemaining()){
+			TimeRemaining = game->GetTimeRemaining();
+			printf(("[GAMELOOP] Time Remaining of round " + std::to_string(game->GetRoundNumber()) + ": " + std::to_string(game->GetTimeRemaining()) + "\n").c_str());
+		}
+		//application->DrawText("test", 10, 10);//hmm.. how did i broke this >.<
+		if (game->GameOver()){
+			application->Quit();
+		}
 		application->EndTick();
+
 
 	}
 

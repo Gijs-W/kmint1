@@ -101,6 +101,9 @@
     <ClCompile Include="IFSMCowHide.cpp">
       <Filter>Source Files\Behaviour\CowBehaviour</Filter>
     </ClCompile>
+    <ClCompile Include="IFSMCowPillFound.cpp">
+      <Filter>Source Files\Behaviour\CowBehaviour</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="SDL2.dll" />
@@ -179,6 +182,9 @@
       <Filter>Header Files\Behaviour\CowBehaviour</Filter>
     </ClInclude>
     <ClInclude Include="IFSMCowHide.h">
+      <Filter>Header Files\Behaviour\CowBehaviour</Filter>
+    </ClInclude>
+    <ClInclude Include="IFSMCowPillFound.h">
       <Filter>Header Files\Behaviour\CowBehaviour</Filter>
     </ClInclude>
   </ItemGroup>

@@ -92,6 +92,7 @@
     <ClCompile Include="IFSMCowFindPill.cpp" />
     <ClCompile Include="IFSMCowFlee.cpp" />
     <ClCompile Include="IFSMCowHide.cpp" />
+    <ClCompile Include="IFSMCowPillFound.cpp" />
     <ClCompile Include="IFSMCowPursuit.cpp" />
     <ClCompile Include="IFSMCowWander.cpp" />
     <ClCompile Include="IFSMRabbitChase.cpp" />
@@ -119,6 +120,7 @@
     <ClInclude Include="IFSMCowFindPill.h" />
     <ClInclude Include="IFSMCowFlee.h" />
     <ClInclude Include="IFSMCowHide.h" />
+    <ClInclude Include="IFSMCowPillFound.h" />
     <ClInclude Include="IFSMCowPursuit.h" />
     <ClInclude Include="IFSMCowWander.h" />
     <ClInclude Include="IFSMRabbit.h" />

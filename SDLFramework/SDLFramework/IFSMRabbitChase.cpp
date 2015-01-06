@@ -3,6 +3,8 @@
 #include "MovingEntity.h"
 #include "Cow.h"
 
+#include <string>
+
 IFSMRabbitChase::IFSMRabbitChase()
 {
 }
@@ -14,6 +16,8 @@ void IFSMRabbitChase::Calculate(MovingEntity* entity, Instance* instance){
 	{
 		//switch states
 		printf("[Rabbit] caught the Cow!\n");
+		entity->AddPoints(target->GetState()->CatchPoints(instance));
+		printf(("[Rabbit] POINTS -> " + std::to_string(entity->GetPoints()) + "\n").c_str());
 		instance->ResetEntities(true, true, false, false);
 		return;
 	}

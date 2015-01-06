@@ -3,6 +3,7 @@
 #include "Cow.h"
 #include "Pill.h"
 #include "Gun.h"
+#include "IFSM.h"
 
 
 Instance::Instance(FWApplication* application, std::string colour)
@@ -61,15 +62,33 @@ void Instance::ResetEntities(bool Cow, bool Rabbit, bool Pill, bool Gun){
 	if (Gun) ResetGun();
 }
 
+void Instance::HardResetEntities(){
+	HardResetCow();
+	ResetRabbit();
+	ResetPill();
+	ResetGun();
+}
+
 void Instance::ResetCow(){
-	m_Cow->SetPosition(Vector2D(600, 400));
-	m_Cow->SetOffset(600, 400);
+	int x = 400 - (rand() % 400);
+	int y = 800 - (rand() % 800);
+	m_Cow->SetPosition(Vector2D(x, y));
+	m_Cow->SetOffset(x, y);
+	if (m_Cow->GetState()->ShouldResetState()){
+		m_Cow->ResetState();
+	}
+}
+
+void Instance::HardResetCow(){
+	ResetCow();
 	m_Cow->ResetState();
 }
 
 void Instance::ResetRabbit(){
-	m_Rabbit->SetPosition(Vector2D(200, 400));
-	m_Rabbit->SetOffset(200, 400);
+	int x = m_Cow->GetPosition().x + 400;
+	int y = m_Cow->GetPosition().y;
+	m_Rabbit->SetPosition(Vector2D(x, y));
+	m_Rabbit->SetOffset(x, y);
 	m_Cow->ResetState();
 }
 
@@ -85,6 +104,16 @@ void Instance::ResetGun(){
 	int y = 800 - (rand() % 800);
 	m_Gun->SetPosition(Vector2D(x, y));
 	m_Gun->SetOffset(x, y);
+}
+
+void Instance::NewRound(){
+	//Calculate new Cow percentages
+		/* Continue here, pls... */
+	//Set new Cow percentages
+
+	//Hard Reset All entities:
+	HardResetEntities();
+
 }
 
 void Instance::DeleteEntity(IGameObject* entity){

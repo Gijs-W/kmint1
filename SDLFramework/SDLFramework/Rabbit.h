@@ -5,7 +5,6 @@
 class Rabbit :
 	public MovingEntity
 {
-private:
 public:
 	Rabbit();
 	void Update(Instance* Instance, float deltatime);

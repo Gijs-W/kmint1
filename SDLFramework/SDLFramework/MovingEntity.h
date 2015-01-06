@@ -10,6 +10,7 @@ class MovingEntity :
 	public IGameObject
 {
 protected:
+	int m_Points;
 
 	Vector2D m_Position;
 	Vector2D m_Heading;
@@ -20,6 +21,7 @@ protected:
 
 	IFSM* m_CurrentState;
 private:
+
 	FWApplication* m_Application;
 public:
 	MovingEntity();
@@ -35,7 +37,11 @@ public:
 	virtual void SetSpeed(float speed) { m_Speed = speed; }
 
 	virtual void SetState(IFSM* state);
+	virtual IFSM* GetState();
 	virtual void ResetState(){};
+
+	void AddPoints(int points);
+	int GetPoints();
 
 	virtual void Move(float delta);
 	virtual ~MovingEntity();

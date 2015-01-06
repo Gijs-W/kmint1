@@ -11,6 +11,12 @@ private:
 	Rabbit* m_Rabbit;
 	Pill* m_Pill;
 	Gun* m_Gun;
+	void ResetCow();
+	void HardResetCow();
+	void ResetRabbit();
+	void ResetPill();
+	void ResetGun();
+	void HardResetEntities();
 public:
 	Instance(FWApplication* application, std::string colour);
 	void Update(float dt);
@@ -19,10 +25,7 @@ public:
 	Pill* GetPill();
 	Gun* GetGun();
 	void ResetEntities(bool Cow, bool Rabbit, bool Pill, bool Gun);
-	void ResetCow();
-	void ResetRabbit();
-	void ResetPill();
-	void ResetGun();
+	void NewRound();
 	void DeleteEntity(IGameObject* entity);
 	virtual ~Instance();
 };
