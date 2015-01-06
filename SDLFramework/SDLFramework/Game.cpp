@@ -56,13 +56,6 @@ void Game::ResetRoundTimer(){
 }
 
 void Game::NewRound(){
-	if (m_RoundNumber >= 5){
-		m_GameOver = true;
-		return;
-	}
-	m_RoundNumber++;
-	ResetRoundTimer();
-	
 	m_InstanceRed->NewRound();
 	if (!SingleInstance){
 		m_InstanceGreen->NewRound();
@@ -70,6 +63,12 @@ void Game::NewRound(){
 		m_InstanceYellow->NewRound();
 	}
 
+	if (m_RoundNumber >= 5){
+		m_GameOver = true;
+		return;
+	}
+	m_RoundNumber++;
+	ResetRoundTimer();
 }
 
 bool Game::GameOver(){

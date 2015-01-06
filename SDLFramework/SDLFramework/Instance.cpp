@@ -107,8 +107,11 @@ void Instance::ResetGun(){
 }
 
 void Instance::NewRound(){
-	//Calculate new Cow percentages
+	//Save data to file
+
+	//Calculate new Cow percentages based on data
 		/* Continue here, pls... */
+
 	//Set new Cow percentages
 
 	//Hard Reset All entities:
