@@ -3,17 +3,18 @@
 #include <time.h>
 
 #include "MovingEntity.h"
+#include "Cow.h"
 
 IFSMRabbitWander::IFSMRabbitWander()
 {
 }
 
 
-void IFSMRabbitWander::Calculate(MovingEntity* entity, MovingEntity* other){
+void IFSMRabbitWander::Calculate(MovingEntity* entity, Instance* instance){
 
 	//only flee if the target is within 'panic distance'. Work in distance //squared space.
-
-	if (entity->GetPosition().DistanceBetween(other->GetPosition()) < PANNICDISTANCE)
+	Cow* target = instance->GetCow();
+	if (entity->GetPosition().DistanceBetween(target->GetPosition()) < PANIC_DISTANCE)
 	{
 		//switch states
 		entity->SetState(new IFSMRabbitFlee());

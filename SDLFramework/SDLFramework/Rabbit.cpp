@@ -1,16 +1,19 @@
 #include "Rabbit.h"
 #include "Cow.h"
-#include "IFSMRabbitFlee.h"
-#include "Game.h"
+#include "IFSMRabbitChase.h"
+#include "Instance.h"
 
 Rabbit::Rabbit()
 {
-	SetState(new IFSMRabbitFlee());
+	ResetState();
 }
 
+void Rabbit::Update(Instance* instance, float deltatime){
+	m_CurrentState->Calculate(this, instance);
+}
 
-void Rabbit::Update(Game* game, float deltatime){
-	m_CurrentState->Calculate(this, game->GetCows());
+void Rabbit::ResetState(){
+	SetState(new IFSMRabbitChase());
 }
 
 Rabbit::~Rabbit()

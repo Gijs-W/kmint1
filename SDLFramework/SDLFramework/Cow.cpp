@@ -1,15 +1,20 @@
-#include "IFSMCowPursuit.h"
-#include "Game.h"
+#include "IFSMCowWander.h"
+#include "Instance.h"
 #include "Rabbit.h"
 #include "Cow.h"
 
 Cow::Cow()
 {
-	SetState(new IFSMCowPursuit());
+	ResetState();
 }
 
-void Cow::Update(Game* game, float deltatime){
-	m_CurrentState->Calculate(this, game->GetRabbits());
+void Cow::Update(Instance* instance, float deltatime){
+	m_CurrentState->Calculate(this, instance);
+}
+
+
+void Cow::ResetState(){
+	SetState(new IFSMCowWander());
 }
 
 Cow::~Cow()

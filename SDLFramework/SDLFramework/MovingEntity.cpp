@@ -10,16 +10,19 @@ void MovingEntity::Move(float delta){
 	m_Position += m_Heading * m_Speed; // * delta;
 
 	//Debug purpose:
-	//int i = 800 - (int)m_Position.x % 800;
-	//int y = 600 - (int)m_Position.y % 600;
+	int x = 800 - (int)m_Position.x % 800;
+	int y = 800 - (int)m_Position.y % 800;
 
-	SetOffset(800 - (int)m_Position.x % 800, 600 - (int)m_Position.y % 600);
+	//if (x > 800) x - 800;//possible fix for negavtive x/y values
+
+	SetOffset(x, y);
 }
 
 void MovingEntity::SetState(IFSM* state){
 	delete m_CurrentState;
 	m_CurrentState = state;
 }
+
 
 MovingEntity::~MovingEntity()
 {

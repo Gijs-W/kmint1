@@ -87,11 +87,20 @@
     <ClCompile Include="Cow.cpp" />
     <ClCompile Include="FWApplication.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Gun.cpp" />
+    <ClCompile Include="IFSMCowFindGun.cpp" />
+    <ClCompile Include="IFSMCowFindPill.cpp" />
+    <ClCompile Include="IFSMCowFlee.cpp" />
+    <ClCompile Include="IFSMCowHide.cpp" />
     <ClCompile Include="IFSMCowPursuit.cpp" />
+    <ClCompile Include="IFSMCowWander.cpp" />
+    <ClCompile Include="IFSMRabbitChase.cpp" />
     <ClCompile Include="IFSMRabbitFlee.cpp" />
     <ClCompile Include="IFSMRabbitWander.cpp" />
+    <ClCompile Include="Instance.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MovingEntity.cpp" />
+    <ClCompile Include="Pill.cpp" />
     <ClCompile Include="Rabbit.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -103,14 +112,23 @@
     <ClInclude Include="Enum.h" />
     <ClInclude Include="FWApplication.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Gun.h" />
     <ClInclude Include="IFSM.h" />
     <ClInclude Include="IFSMCow.h" />
+    <ClInclude Include="IFSMCowFindGun.h" />
+    <ClInclude Include="IFSMCowFindPill.h" />
+    <ClInclude Include="IFSMCowFlee.h" />
+    <ClInclude Include="IFSMCowHide.h" />
     <ClInclude Include="IFSMCowPursuit.h" />
+    <ClInclude Include="IFSMCowWander.h" />
     <ClInclude Include="IFSMRabbit.h" />
+    <ClInclude Include="IFSMRabbitChase.h" />
     <ClInclude Include="IFSMRabbitFlee.h" />
     <ClInclude Include="IFSMRabbitWander.h" />
     <ClInclude Include="IGameObject.h" />
+    <ClInclude Include="Instance.h" />
     <ClInclude Include="MovingEntity.h" />
+    <ClInclude Include="Pill.h" />
     <ClInclude Include="Rabbit.h" />
     <ClInclude Include="Vector2D.h" />
     <ClInclude Include="Vector3D.h" />

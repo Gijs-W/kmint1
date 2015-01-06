@@ -2,13 +2,12 @@
 #include "MovingEntity.h"
 #include "Instance.h"
 
-class Cow :
+class Gun :
 	public MovingEntity
 {
 public:
-	Cow();
+	Gun();
 	void Update(Instance* Instance, float deltatime);
-	void ResetState();
-	~Cow();
+	~Gun();
 };
 

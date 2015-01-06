@@ -10,7 +10,7 @@ int main(int args[])
 {
 	srand(time(0));
 	//auto window = Window::CreateSDLWindow();
-	auto application = new FWApplication();
+	auto application = new FWApplication(50,50,800,800);
 	if (!application->GetWindow())
 	{
 		LOG("Couldn't create window...");

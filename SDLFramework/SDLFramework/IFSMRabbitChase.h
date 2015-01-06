@@ -1,12 +1,12 @@
 #pragma once
 #include "IFSMRabbit.h"
 
-class IFSMRabbitWander :
+class IFSMRabbitChase :
 	public IFSMRabbit
 {
 public:
-	IFSMRabbitWander();
+	IFSMRabbitChase();
 	void Calculate(MovingEntity* entity, Instance* instance);
-	virtual ~IFSMRabbitWander();
+	virtual ~IFSMRabbitChase();
 };
 

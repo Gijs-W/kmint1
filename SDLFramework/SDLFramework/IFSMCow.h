@@ -6,6 +6,6 @@ class IFSMCow :
 
 public:
 	IFSMCow(){};
-	virtual void Calculate(MovingEntity* entity, MovingEntity* other){};
+	virtual void Calculate(MovingEntity* entity, Instance* instance){};
 	virtual ~IFSMCow(){};
 };

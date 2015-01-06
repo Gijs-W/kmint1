@@ -1,6 +1,6 @@
 #pragma once
 #include "MovingEntity.h"
-#include "Game.h"
+#include "Instance.h"
 
 class Rabbit :
 	public MovingEntity
@@ -8,7 +8,8 @@ class Rabbit :
 private:
 public:
 	Rabbit();
-	void Update(Game* game, float deltatime);
+	void Update(Instance* Instance, float deltatime);
+	void ResetState();
 	~Rabbit();
 };
 

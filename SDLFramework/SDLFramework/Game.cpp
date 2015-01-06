@@ -1,37 +1,34 @@
 #include "Game.h"
-#include "Rabbit.h"
-#include "Cow.h"
+#include "Instance.h"
+
+using std::string;
 
 Game::Game(FWApplication* application)
 {
-	m_Rabbit = new Rabbit();
-	SDL_Texture* rabitTexture = application->LoadTexture("rabbit-2.png");//todo: delete
-	m_Rabbit->SetTexture(rabitTexture);
-	m_Rabbit->SetSize(32, 32);
-	m_Rabbit->SetPosition(Vector2D(100, 100));
-	m_Rabbit->SetOffset(1000, 1000);
-
-	m_Cow = new Cow();
-	SDL_Texture* cowTexture = application->LoadTexture("cow-1.png"); //todo: delete
-	m_Cow->SetTexture(cowTexture);
-	m_Cow->SetSize(32, 32);
-	m_Rabbit->SetOffset(1300, 1000);
-
-	application->AddRenderable(m_Cow);
-	application->AddRenderable(m_Rabbit);
+	m_InstanceRed	 = new Instance(application, "red");
+	//m_InstanceGreen  = new Instance(application, "green");
+	//m_InstanceBlue	 = new Instance(application, "blue");
+	//m_InstanceYellow = new Instance(application, "yellow");
 }
 
 void Game::Update(float dt){
-	m_Rabbit->Update(this, dt);
-	m_Cow->Update(this, dt);
+	m_InstanceRed->Update(dt);
+	//m_InstanceGreen->Update(dt);
+	//m_InstanceBlue->Update(dt);
+	//m_InstanceYellow->Update(dt);
 }
 
-
-Cow* Game::GetCows(){ 
-	return m_Cow; 
+Instance* Game::GetInstanceRed(){
+	return m_InstanceRed;
 }
-Rabbit* Game::GetRabbits(){ 
-	return m_Rabbit; 
+Instance* Game::GetInstanceGreen(){
+	return m_InstanceGreen;
+}
+Instance* Game::GetInstanceBlue(){
+	return m_InstanceBlue;
+}
+Instance* Game::GetInstanceYellow(){
+	return m_InstanceYellow;
 }
 
 Game::~Game()

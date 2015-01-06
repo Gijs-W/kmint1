@@ -1,12 +1,11 @@
 #pragma once
 #include "IFSMCow.h"
-
-class IFSMCowPursuit :
+class IFSMCowFlee :
 	public IFSMCow
 {
 public:
-	IFSMCowPursuit();
+	IFSMCowFlee();
 	void Calculate(MovingEntity* entity, Instance* instance);
-	virtual ~IFSMCowPursuit();
+	virtual ~IFSMCowFlee();
 };
 

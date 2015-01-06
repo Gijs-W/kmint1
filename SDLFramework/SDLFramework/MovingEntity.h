@@ -2,8 +2,8 @@
 #include "IGameObject.h"
 #include "Vector2D.h"
 
-#define SCREEN_WIDTH 800.0f
-#define SCREEN_HEIGHT 600.0f
+//#define SCREEN_WIDTH 800.0f
+//#define SCREEN_HEIGHT 800.0f
 
 class IFSM;
 class MovingEntity :
@@ -35,6 +35,7 @@ public:
 	virtual void SetSpeed(float speed) { m_Speed = speed; }
 
 	virtual void SetState(IFSM* state);
+	virtual void ResetState(){};
 
 	virtual void Move(float delta);
 	virtual ~MovingEntity();

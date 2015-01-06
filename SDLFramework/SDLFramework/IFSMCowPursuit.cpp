@@ -1,15 +1,18 @@
 #include "IFSMCowPursuit.h"
 
 #include "MovingEntity.h"
+#include "Instance.h"
+#include "Rabbit.h"
 
 IFSMCowPursuit::IFSMCowPursuit()
 {
 }
 
 
-void IFSMCowPursuit::Calculate(MovingEntity* entity, MovingEntity* other){
+void IFSMCowPursuit::Calculate(MovingEntity* entity, Instance* instance){
 
-	Vector2D newHeading = (other->GetPosition() - entity->GetPosition());
+	Rabbit* target = instance->GetRabbit();
+	Vector2D newHeading = (target->GetPosition() - entity->GetPosition());
 	newHeading.Normalize();
 
 	entity->SetSpeed(PURSUITSPEED);

@@ -1,18 +1,21 @@
 #pragma once
 #include "FWApplication.h"
 
-class Rabbit;
-class Cow;
+class Instance;
 class Game
 {
 private:
-	Cow* m_Cow;
-	Rabbit* m_Rabbit;
+	Instance* m_InstanceRed;
+	Instance* m_InstanceGreen;
+	Instance* m_InstanceBlue;
+	Instance* m_InstanceYellow;
 public:
 	Game(FWApplication* application);
 	void Update(float dt);
-	Cow* GetCows();
-	Rabbit* GetRabbits();
+	Instance* GetInstanceRed();
+	Instance* GetInstanceGreen();
+	Instance* GetInstanceBlue();
+	Instance* GetInstanceYellow();
 	~Game();
 };
 
