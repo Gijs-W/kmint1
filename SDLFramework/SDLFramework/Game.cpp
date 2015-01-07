@@ -1,7 +1,13 @@
 #include "Game.h"
 #include "Instance.h"
+#include "Cow.h"
 
-using std::string;
+#include <string>
+#include <map>
+#include <vector>
+
+using std::map;
+using std::vector;
 
 Game::Game(FWApplication* application)
 {
@@ -56,6 +62,52 @@ void Game::ResetRoundTimer(){
 }
 
 void Game::NewRound(){
+	
+	m_InstanceRed->SaveRoundInformation();
+	if (!SingleInstance){
+		m_InstanceGreen->SaveRoundInformation();
+		m_InstanceBlue->SaveRoundInformation();
+		m_InstanceYellow->SaveRoundInformation();
+	}
+
+
+	map<Cow*, float> cowMap;
+	cowMap[m_InstanceRed->GetCow()] = m_InstanceRed->GetCow()->GetPoints() / 100.0f * 4.0f;
+	cowMap[m_InstanceGreen->GetCow()] = m_InstanceGreen->GetCow()->GetPoints() / 100.0f * 4.0f;
+	cowMap[m_InstanceBlue->GetCow()] = m_InstanceBlue->GetCow()->GetPoints() / 100.0f * 4.0f;
+	cowMap[m_InstanceYellow->GetCow()] = m_InstanceYellow->GetCow()->GetPoints() / 100.0f * 4.0f;
+
+	vector<Cow*> cowVector;
+	while (cowVector.size() < 4){
+		Cow* cowResult = nullptr;
+		float highestValue = -100;//uhh, should actually be most negative float or something
+
+		for (auto &value : cowMap){
+			if (value.second > highestValue){
+				cowResult = value.first;
+			}
+		}
+
+		cowMap[cowResult] -= 1.0f;
+		cowVector.push_back(cowResult);
+	}
+
+	Cow* firstCow = cowVector.at(0);
+	cowVector.erase(cowVector.begin());
+	int firstCowsPartner = (rand() % 3);
+	Cow* secondCow = cowVector.at(firstCowsPartner);
+	cowVector.erase(cowVector.begin() + firstCowsPartner);
+	Cow* thirdCow = cowVector.at(0);
+	cowVector.erase(cowVector.begin());
+	Cow* fourthCow = cowVector.at(0);
+	cowVector.erase(cowVector.begin());
+
+
+	SetCowChoices(m_InstanceRed->GetCow(), firstCow, secondCow, (rand() % 3));
+	SetCowChoices(m_InstanceGreen->GetCow(), secondCow, firstCow, (rand() % 3));
+	SetCowChoices(m_InstanceBlue->GetCow(), thirdCow, fourthCow, (rand() % 3));
+	SetCowChoices(m_InstanceYellow->GetCow(), fourthCow, thirdCow, (rand() % 3));
+
 	m_InstanceRed->NewRound();
 	if (!SingleInstance){
 		m_InstanceGreen->NewRound();
@@ -73,6 +125,15 @@ void Game::NewRound(){
 
 bool Game::GameOver(){
 	return m_GameOver;
+}
+
+
+void Game::SetCowChoices(Cow* target, Cow* Mom, Cow* Dad, int slice){
+	float fleeChance = Mom->GetFleeChance();
+	float findPillChance = (slice > 1) ? Mom->GetFindPillChance() : Dad->GetFindPillChance();
+	float findGunChance = (slice < 3) ? Mom->GetFindGunChance() : Dad->GetFindGunChance();
+	float hideChance = Dad->GetHideChance();
+	target->SetChoiceChances(fleeChance, findPillChance, findGunChance, hideChance);
 }
 
 Game::~Game()

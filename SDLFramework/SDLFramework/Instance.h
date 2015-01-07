@@ -11,12 +11,17 @@ private:
 	Rabbit* m_Rabbit;
 	Pill* m_Pill;
 	Gun* m_Gun;
+
+	std::string m_Colour;
+
 	void ResetCow();
 	void HardResetCow();
 	void ResetRabbit();
+	void HardResetRabbit();
 	void ResetPill();
 	void ResetGun();
 	void HardResetEntities();
+	void SaveRoundInformation();
 public:
 	Instance(FWApplication* application, std::string colour);
 	void Update(float dt);

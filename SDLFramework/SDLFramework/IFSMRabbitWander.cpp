@@ -31,7 +31,6 @@ void IFSMRabbitWander::Calculate(MovingEntity* entity, Instance* instance){
 	newHeading.Normalize();
 
 	entity->SetHeading(newHeading);
-	entity->SetSpeed(WANDERINGSPEED);
 
 	entity->Move(0.0f);
 

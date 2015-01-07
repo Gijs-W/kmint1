@@ -5,9 +5,13 @@
 #include "Gun.h"
 #include "IFSM.h"
 
+#include <string>
+
 
 Instance::Instance(FWApplication* application, std::string colour)
 {
+	m_Colour = colour;
+
 	m_Cow = new Cow();
 	SDL_Texture* cowTexture = application->LoadTexture("Cow/cow-" + colour + ".png");
 	m_Cow->SetTexture(cowTexture);
@@ -64,7 +68,7 @@ void Instance::ResetEntities(bool Cow, bool Rabbit, bool Pill, bool Gun){
 
 void Instance::HardResetEntities(){
 	HardResetCow();
-	ResetRabbit();
+	HardResetRabbit();
 	ResetPill();
 	ResetGun();
 }
@@ -81,6 +85,7 @@ void Instance::ResetCow(){
 
 void Instance::HardResetCow(){
 	ResetCow();
+	m_Cow->AddPoints(-m_Cow->GetPoints());
 	m_Cow->ResetState();
 }
 
@@ -89,7 +94,13 @@ void Instance::ResetRabbit(){
 	int y = m_Cow->GetPosition().y;
 	m_Rabbit->SetPosition(Vector2D(x, y));
 	m_Rabbit->SetOffset(x, y);
-	m_Rabbit->ResetState();
+	//m_Rabbit->ResetState();
+	m_Rabbit->AddPoints(-m_Rabbit->GetPoints());
+}
+
+void Instance::HardResetRabbit(){
+	ResetCow();
+	m_Rabbit->AddPoints(-m_Rabbit->GetPoints());
 }
 
 void Instance::ResetPill(){
@@ -107,17 +118,22 @@ void Instance::ResetGun(){
 }
 
 void Instance::NewRound(){
-	//Save data to file
-
-	//Calculate new Cow percentages based on data
-		/* Continue here, pls... */
-
-	//Set new Cow percentages
 
 	//Hard Reset All entities:
 	HardResetEntities();
 
 }
+
+void Instance::SaveRoundInformation(){
+
+	//Save data to file
+	printf("-----------------------------\n");
+	printf(("--- Colour: " + m_Colour + " ---\n").c_str());
+	printf(("--- Cow Points: " + std::to_string(m_Cow->GetPoints()) + " ---\n").c_str());
+	printf(("--- Rabbit Points: " + std::to_string(m_Rabbit->GetPoints()) + " ---\n").c_str());
+
+}
+
 
 void Instance::DeleteEntity(IGameObject* entity){
 	//m_Application->RemoveTexture(entity->GetTexture());//Todo.. fix

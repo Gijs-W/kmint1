@@ -25,7 +25,6 @@ void IFSMRabbitChase::Calculate(MovingEntity* entity, Instance* instance){
 	Vector2D newHeading = (target->GetPosition() - entity->GetPosition());
 	newHeading.Normalize();
 
-	entity->SetSpeed(PURSUITSPEED);
 	entity->SetHeading(newHeading);
 	entity->Move(0.0f);
 

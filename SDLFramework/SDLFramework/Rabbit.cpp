@@ -5,6 +5,7 @@
 
 Rabbit::Rabbit()
 {
+	SetSpeed(RABBIT_SPEED);
 	ResetState();
 }
 

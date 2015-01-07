@@ -2,6 +2,7 @@
 #include "FWApplication.h"
 #include <ctime>
 
+class Cow;
 class Instance;
 class Game
 {
@@ -19,6 +20,8 @@ private:
 
 	bool m_GameOver = false;
 	void NewRound();
+
+	void SetCowChoices(Cow* target, Cow* Mom, Cow* Dad, int slice);
 public:
 	Game(FWApplication* application);
 	void Update(float dt);

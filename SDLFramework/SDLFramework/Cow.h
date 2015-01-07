@@ -23,6 +23,9 @@ public:
 	void SetFindGunChance(float chance) { m_FindGunChance = chance; }
 	float GetHideChance(){ return m_HideChance; }
 	void SetHideChance(float chance) { m_HideChance = chance; }
+
+	void SetChoiceChances(float fleeChance, float findPillChance, float findGunChance, float hideChance);
+
 	~Cow();
 };
 

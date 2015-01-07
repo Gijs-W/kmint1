@@ -5,17 +5,10 @@
 
 Cow::Cow()
 {
+	SetSpeed(COW_SPEED);
 	ResetState();
 
-	int fleeChance = 30 - (rand() % 20);
-	int findPillChance = 30 - (rand() % 20);
-	int findGunChance = 30 - (rand() % 20);
-	int hideChance = 30 - (rand() % 20);
-	float total = fleeChance + findPillChance + findGunChance + hideChance;
-	m_FleeChance = fleeChance * 100 / total;
-	m_FindPillChance = findPillChance * 100 / total;
-	m_FindGunChance = findGunChance * 100 / total;
-	m_HideChance = hideChance * 100 / total;
+	SetChoiceChances(30 - (rand() % 20), 30 - (rand() % 20), 30 - (rand() % 20), 30 - (rand() % 20));
 }
 
 void Cow::Update(Instance* instance, float deltatime){
@@ -25,6 +18,14 @@ void Cow::Update(Instance* instance, float deltatime){
 
 void Cow::ResetState(){
 	SetState(new IFSMCowWander());
+}
+
+void Cow::SetChoiceChances(float fleeChance, float findPillChance, float findGunChance, float hideChance){
+	float total = fleeChance + findPillChance + findGunChance + hideChance;
+	m_FleeChance = fleeChance * 100 / total;
+	m_FindPillChance = findPillChance * 100 / total;
+	m_FindGunChance = findGunChance * 100 / total;
+	m_HideChance = hideChance * 100 / total;
 }
 
 Cow::~Cow()
