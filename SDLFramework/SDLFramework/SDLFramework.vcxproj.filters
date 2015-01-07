@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Week1">
+      <UniqueIdentifier>{6469432c-2a1e-411f-a745-f6b8fe556dad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Behaviour">
+      <UniqueIdentifier>{809b4854-e3c1-4203-8d07-4a59a8a09f09}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Behaviour\CowBehaviour">
+      <UniqueIdentifier>{5387b9d7-725a-4e43-a528-e40c5784d7d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Behaviour\RabbitBehaviour">
+      <UniqueIdentifier>{ad265cb1-f050-4311-9a79-5c82df58e027}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Entity">
+      <UniqueIdentifier>{f66231c2-57bc-41d9-bbb5-c5126f239fa0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game">
+      <UniqueIdentifier>{c189781d-b5bd-484e-8c01-5467450cf176}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Tools">
+      <UniqueIdentifier>{073efd60-9eb5-412e-8cf3-5e4bb9c54695}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Behaviour">
+      <UniqueIdentifier>{6b0fddb7-be20-4278-8902-f87711d480e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Behaviour\CowBehaviour">
+      <UniqueIdentifier>{1b8dc4a6-30b4-46c7-a392-e3707f442a97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Behaviour\RabbitBehaviour">
+      <UniqueIdentifier>{65cea91b-f540-4f2e-9126-4adeca821de0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entity">
+      <UniqueIdentifier>{1c3f6272-35b5-4cb8-9b0a-87a9888706b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game">
+      <UniqueIdentifier>{23215670-ad08-45de-81e6-8527b4203dac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Tools">
+      <UniqueIdentifier>{177a4b96-3739-4cf3-b31c-3db16ebd6349}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FWApplication.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Cow.cpp">
+      <Filter>Source Files\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Gun.cpp">
+      <Filter>Source Files\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="IFSMCowFindGun.cpp">
+      <Filter>Source Files\Behaviour\CowBehaviour</Filter>
+    </ClCompile>
+    <ClCompile Include="IFSMCowFindPill.cpp">
+      <Filter>Source Files\Behaviour\CowBehaviour</Filter>
+    </ClCompile>
+    <ClCompile Include="IFSMCowFlee.cpp">
+      <Filter>Source Files\Behaviour\CowBehaviour</Filter>
+    </ClCompile>
+    <ClCompile Include="IFSMCowHide.cpp">
+      <Filter>Source Files\Behaviour\CowBehaviour</Filter>
+    </ClCompile>
+    <ClCompile Include="IFSMCowPillFound.cpp">
+      <Filter>Source Files\Behaviour\CowBehaviour</Filter>
+    </ClCompile>
+    <ClCompile Include="IFSMCowPursuit.cpp">
+      <Filter>Source Files\Behaviour\CowBehaviour</Filter>
+    </ClCompile>
+    <ClCompile Include="IFSMCowWander.cpp">
+      <Filter>Source Files\Behaviour\CowBehaviour</Filter>
+    </ClCompile>
+    <ClCompile Include="IFSMRabbitChase.cpp">
+      <Filter>Source Files\Behaviour\RabbitBehaviour</Filter>
+    </ClCompile>
+    <ClCompile Include="IFSMRabbitFlee.cpp">
+      <Filter>Source Files\Behaviour\RabbitBehaviour</Filter>
+    </ClCompile>
+    <ClCompile Include="IFSMRabbitWander.cpp">
+      <Filter>Source Files\Behaviour\RabbitBehaviour</Filter>
+    </ClCompile>
+    <ClCompile Include="Instance.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="MovingEntity.cpp">
+      <Filter>Source Files\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Pill.cpp">
+      <Filter>Source Files\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Rabbit.cpp">
+      <Filter>Source Files\Entity</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SDL2.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Config.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FWApplication.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Cow.h">
+      <Filter>Header Files\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Gun.h">
+      <Filter>Header Files\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="IFSM.h">
+      <Filter>Header Files\Behaviour</Filter>
+    </ClInclude>
+    <ClInclude Include="IFSMCow.h">
+      <Filter>Header Files\Behaviour\CowBehaviour</Filter>
+    </ClInclude>
+    <ClInclude Include="IFSMCowFindGun.h">
+      <Filter>Header Files\Behaviour\CowBehaviour</Filter>
+    </ClInclude>
+    <ClInclude Include="IFSMCowFindPill.h">
+      <Filter>Header Files\Behaviour\CowBehaviour</Filter>
+    </ClInclude>
+    <ClInclude Include="IFSMCowFlee.h">
+      <Filter>Header Files\Behaviour\CowBehaviour</Filter>
+    </ClInclude>
+    <ClInclude Include="IFSMCowHide.h">
+      <Filter>Header Files\Behaviour\CowBehaviour</Filter>
+    </ClInclude>
+    <ClInclude Include="IFSMCowPillFound.h">
+      <Filter>Header Files\Behaviour\CowBehaviour</Filter>
+    </ClInclude>
+    <ClInclude Include="IFSMCowPursuit.h">
+      <Filter>Header Files\Behaviour\CowBehaviour</Filter>
+    </ClInclude>
+    <ClInclude Include="IFSMCowWander.h">
+      <Filter>Header Files\Behaviour\CowBehaviour</Filter>
+    </ClInclude>
+    <ClInclude Include="IFSMRabbit.h">
+      <Filter>Header Files\Behaviour\RabbitBehaviour</Filter>
+    </ClInclude>
+    <ClInclude Include="IFSMRabbitChase.h">
+      <Filter>Header Files\Behaviour\RabbitBehaviour</Filter>
+    </ClInclude>
+    <ClInclude Include="IFSMRabbitFlee.h">
+      <Filter>Header Files\Behaviour\RabbitBehaviour</Filter>
+    </ClInclude>
+    <ClInclude Include="IFSMRabbitWander.h">
+      <Filter>Header Files\Behaviour\RabbitBehaviour</Filter>
+    </ClInclude>
+    <ClInclude Include="Instance.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="IGameObject.h">
+      <Filter>Header Files\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="MovingEntity.h">
+      <Filter>Header Files\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Pill.h">
+      <Filter>Header Files\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Rabbit.h">
+      <Filter>Header Files\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2D.h">
+      <Filter>Header Files\Tools</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
