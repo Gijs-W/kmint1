@@ -21,7 +21,7 @@ private:
 	void ResetPill();
 	void ResetGun();
 	void HardResetEntities();
-	void SaveRoundInformation();
+	void ClearRoundInformation();
 public:
 	Instance(FWApplication* application, std::string colour);
 	void Update(float dt);
@@ -32,6 +32,7 @@ public:
 	void ResetEntities(bool Cow, bool Rabbit, bool Pill, bool Gun);
 	void NewRound();
 	void DeleteEntity(IGameObject* entity);
+	void SaveRoundInformation(int roundNumber);
 	virtual ~Instance();
 };
 

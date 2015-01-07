@@ -7,10 +7,14 @@
 
 #include <string>
 
+//IO
+#include <fstream>
+
 
 Instance::Instance(FWApplication* application, std::string colour)
 {
 	m_Colour = colour;
+	ClearRoundInformation();
 
 	m_Cow = new Cow();
 	SDL_Texture* cowTexture = application->LoadTexture("Cow/cow-" + colour + ".png");
@@ -124,13 +128,28 @@ void Instance::NewRound(){
 
 }
 
-void Instance::SaveRoundInformation(){
+void Instance::ClearRoundInformation(){
+	const std::string textfile("../Resources/Files/cow-" + m_Colour + ".txt");
 
+	std::ofstream output_file(textfile);
+	output_file << "Information about the " + m_Colour + " cow:\n";
+
+}
+
+void Instance::SaveRoundInformation(int roundNumber){
+	const std::string textfile("../Resources/Files/cow-" + m_Colour + ".txt");
+
+	std::ofstream output_file(textfile, std::ios::app);
 	//Save data to file
-	printf("-----------------------------\n");
-	printf(("--- Colour: " + m_Colour + " ---\n").c_str());
-	printf(("--- Cow Points: " + std::to_string(m_Cow->GetPoints()) + " ---\n").c_str());
-	printf(("--- Rabbit Points: " + std::to_string(m_Rabbit->GetPoints()) + " ---\n").c_str());
+	output_file << "\n-----------------------------------------\n";
+	output_file << "---------------- Round " + std::to_string(roundNumber) + " ----------------\n";
+	output_file << "-----------------------------------------\n";
+	output_file << "    Cow Points: " + std::to_string(m_Cow->GetPoints()) + "\n";
+	output_file << "    Rabbit Points: " + std::to_string(m_Rabbit->GetPoints()) + "\n";
+	output_file << "    Cow Flee Chance: " + std::to_string(m_Cow->GetFleeChance()) + "\n";
+	output_file << "    Cow Find Pill Chance: " + std::to_string(m_Cow->GetFindPillChance()) + "\n";
+	output_file << "    Cow Find Gun Chance: " + std::to_string(m_Cow->GetFindGunChance()) + "\n";
+	output_file << "    Cow Hide Chance: " + std::to_string(m_Cow->GetHideChance()) + "\n";
 
 }
 

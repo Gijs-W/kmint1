@@ -12,7 +12,7 @@ using std::vector;
 Game::Game(FWApplication* application)
 {
 	m_RoundNumber = 1;
-	m_RoundTime = 30;
+	m_RoundTime = 10;
 	ResetRoundTimer();
 	m_InstanceRed	 = new Instance(application, "red");
 	if (!SingleInstance){
@@ -63,11 +63,11 @@ void Game::ResetRoundTimer(){
 
 void Game::NewRound(){
 	
-	m_InstanceRed->SaveRoundInformation();
+	m_InstanceRed->SaveRoundInformation(m_RoundNumber);
 	if (!SingleInstance){
-		m_InstanceGreen->SaveRoundInformation();
-		m_InstanceBlue->SaveRoundInformation();
-		m_InstanceYellow->SaveRoundInformation();
+		m_InstanceGreen->SaveRoundInformation(m_RoundNumber);
+		m_InstanceBlue->SaveRoundInformation(m_RoundNumber);
+		m_InstanceYellow->SaveRoundInformation(m_RoundNumber);
 	}
 
 
