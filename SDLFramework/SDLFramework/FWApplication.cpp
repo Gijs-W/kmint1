@@ -25,7 +25,7 @@ FWApplication::FWApplication(int offsetX, int offsetY, int width, int height)
 		return;
 	}
 
-	mWindow = SDL_CreateWindow("KMint framework", offsetX, offsetY, width, height, SDL_WINDOW_SHOWN);
+	mWindow = SDL_CreateWindow("KMint opdracht week 5 - Bas ter Bogt & Gijs van de Water", offsetX, offsetY, width, height, SDL_WINDOW_SHOWN);
 	if (!mWindow)
 	{
 		LOG(SDL_GetError());
