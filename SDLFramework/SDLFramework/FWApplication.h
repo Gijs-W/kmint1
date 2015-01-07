@@ -4,6 +4,9 @@
 #include <cstdint>
 #include <vector>
 
+#define SCREEN_WIDTH 800
+#define SCREEN_HEIGHT 800
+
 class IGameObject;
 struct SDL_Renderer;
 struct SDL_Window;
@@ -44,7 +47,7 @@ struct Color
 class FWApplication
 {
 public:
-	FWApplication(int offsetX = 50, int offsetY = 50, int width = 800, int height = 800);
+	FWApplication(int offsetX = 50, int offsetY = 50, int width = SCREEN_WIDTH, int height = SCREEN_HEIGHT);
 	~FWApplication();
 
 	void SetTargetFPS(unsigned short target);
@@ -159,7 +162,8 @@ public:
 	/// <param name="offsetY">	The offset y coordinate. </param>
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 	void DrawText(const std::string & message, uint32_t offsetX, uint32_t offsetY);
-
+	void DrawTextWithWhiteBorder(const std::string & message, uint32_t offsetX, uint32_t offsetY);
+	
 
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -13,7 +13,7 @@ Game::Game(FWApplication* application)
 {
 	ResetRoundTimer();
 	m_InstanceRed	 = new Instance(application, "red");
-	if (!SingleInstance){
+	if (!m_SingleInstance){
 		m_InstanceGreen  = new Instance(application, "green");
 		m_InstanceBlue	 = new Instance(application, "blue");
 		m_InstanceYellow = new Instance(application, "yellow");
@@ -22,7 +22,7 @@ Game::Game(FWApplication* application)
 
 void Game::Update(float dt){
 	m_InstanceRed->Update(dt);
-	if (!SingleInstance){
+	if (!m_SingleInstance){
 		m_InstanceGreen->Update(dt);
 		m_InstanceBlue->Update(dt);
 		m_InstanceYellow->Update(dt);
@@ -62,7 +62,7 @@ void Game::ResetRoundTimer(){
 void Game::NewRound(){
 	
 	m_InstanceRed->SaveRoundInformation(m_RoundNumber);
-	if (!SingleInstance){
+	if (!m_SingleInstance){
 		m_InstanceGreen->SaveRoundInformation(m_RoundNumber);
 		m_InstanceBlue->SaveRoundInformation(m_RoundNumber);
 		m_InstanceYellow->SaveRoundInformation(m_RoundNumber);
@@ -115,7 +115,7 @@ void Game::NewRound(){
 	SetCowChoices(m_InstanceYellow->GetCow(), fourthCow, thirdCow, (rand() % sliceAmount));
 
 	m_InstanceRed->NewRound();
-	if (!SingleInstance){
+	if (!m_SingleInstance){
 		m_InstanceGreen->NewRound();
 		m_InstanceBlue->NewRound();
 		m_InstanceYellow->NewRound();
@@ -127,6 +127,19 @@ void Game::NewRound(){
 
 bool Game::GameOver(){
 	return m_GameOver;
+}
+
+void Game::Pause(){
+	m_Pause = !m_Pause;
+	if (m_Pause){
+		m_PauseTime = std::time(nullptr);
+	}
+	else{
+		m_StartingTime += std::time(nullptr) - m_PauseTime;
+	}
+}
+bool Game::IsPause(){
+	return m_Pause;
 }
 
 

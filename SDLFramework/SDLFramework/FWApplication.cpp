@@ -350,6 +350,22 @@ void FWApplication::DrawText(const std::string & message, uint32_t offsetX, uint
 	}
 }
 
+void FWApplication::DrawTextWithWhiteBorder(const std::string & message, uint32_t offsetX, uint32_t offsetY){
+
+	Color tempColor = mColor;
+
+	SetColor(Color(255, 255, 255, 255));// For the white background
+	int offset = 1;
+	DrawText(message, offsetX + offset, offsetY + offset);
+	DrawText(message, offsetX - offset, offsetY + offset);
+	DrawText(message, offsetX + offset, offsetY - offset);
+	DrawText(message, offsetX - offset, offsetY - offset);
+
+	SetColor(tempColor);// Set colour back
+	DrawText(message, offsetX, offsetY);
+}
+
+
 void FWApplication::SetFontSize(int ptSize)
 {
 	mFontSize = ptSize;

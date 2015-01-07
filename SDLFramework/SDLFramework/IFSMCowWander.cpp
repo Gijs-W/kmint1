@@ -50,6 +50,8 @@ void IFSMCowWander::Calculate(MovingEntity* entity, Instance* instance){
 	srand(time(nullptr));
 	int iX = 13 - (rand() % 25);
 	int iY = 13 - (rand() % 25);
+	if (iX == 0) iX++; //To prevent divide by 0 bugs
+	if (iY == 0) iY++; //To prevent divide by 0 bugs
 
 	Vector2D newHeading = Vector2D((float)iX, (float)iY);
 	newHeading.Normalize();

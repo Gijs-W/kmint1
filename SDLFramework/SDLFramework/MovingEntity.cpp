@@ -1,5 +1,6 @@
 #include "MovingEntity.h"
 
+#include <math.h>       /* isfinite, sqrt */
 
 MovingEntity::MovingEntity()
 {
@@ -10,11 +11,18 @@ void MovingEntity::Move(float delta){
 	m_Position += m_Heading * m_Speed; // * delta;
 
 	//Debug purpose:
-	int x =  (int)m_Position.x % 800;
-	int y =  (int)m_Position.y % 800;
+	int x = (int)m_Position.x % SCREEN_WIDTH;
+	int y = (int)m_Position.y % SCREEN_HEIGHT;
 
-	if (x > 800) x -= 800;//possible fix for negavtive x/y values
-	if (x <= 0) x += 800;
+	if (x > SCREEN_WIDTH) x -= SCREEN_WIDTH;//possible fix for negavtive x/y values
+	if (x <= 0) x += SCREEN_WIDTH;
+
+	if (!isfinite(m_Position.x)){
+		int i = 0;
+	}
+	if (!isfinite(m_Position.y)){
+		int i = 0;
+	}
 
 	SetOffset(x, y);
 }

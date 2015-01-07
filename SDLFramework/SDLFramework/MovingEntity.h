@@ -2,9 +2,6 @@
 #include "IGameObject.h"
 #include "Vector2D.h"
 
-//#define SCREEN_WIDTH 800.0f
-//#define SCREEN_HEIGHT 800.0f
-
 class IFSM;
 class MovingEntity :
 	public IGameObject

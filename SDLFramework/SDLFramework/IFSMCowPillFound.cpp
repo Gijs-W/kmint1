@@ -14,7 +14,8 @@ void IFSMCowPillFound::Calculate(MovingEntity* entity, Instance* instance) {
 }
 
 int IFSMCowPillFound::CatchPoints(Instance* instance){
-	instance->GetCow()->AddPoints(1);
+	int PointsForCowIfBeingCaughtByRabbitWhileHavingAPill{ 1 };
+	instance->GetCow()->AddPoints(PointsForCowIfBeingCaughtByRabbitWhileHavingAPill);
 	//printf(("[SUPERCOW] superCow has this amount of points: "+ std::to_string(instance->GetCow()->GetPoints()) + "\n").c_str());
 	return 0;
 }

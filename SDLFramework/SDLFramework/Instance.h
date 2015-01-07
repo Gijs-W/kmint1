@@ -29,6 +29,7 @@ public:
 	Rabbit* GetRabbit();
 	Pill* GetPill();
 	Gun* GetGun();
+	std::string GetColour();
 	void ResetEntities(bool Cow, bool Rabbit, bool Pill, bool Gun);
 	void NewRound();
 	void DeleteEntity(IGameObject* entity);

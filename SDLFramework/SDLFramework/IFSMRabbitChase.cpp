@@ -15,9 +15,9 @@ void IFSMRabbitChase::Calculate(MovingEntity* entity, Instance* instance){
 	if (entity->GetPosition().DistanceBetween(target->GetPosition()) <= CATCH_DISTANCE)
 	{
 		//switch states
-		printf("[Rabbit] caught the Cow!\n");
+		printf(("[Rabbit-" + instance->GetColour() + "] caught the " + instance->GetColour() + " Cow!\n").c_str());
 		entity->AddPoints(target->GetState()->CatchPoints(instance));
-		printf(("[Rabbit] POINTS -> " + std::to_string(entity->GetPoints()) + "\n").c_str());
+		//printf(("[Rabbit] POINTS -> " + std::to_string(entity->GetPoints()) + "\n").c_str());
 		instance->ResetEntities(true, true, false, false);
 		return;
 	}

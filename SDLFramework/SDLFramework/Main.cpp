@@ -12,7 +12,7 @@ int main(int args[])
 
 	srand(time(0));
 	//auto window = Window::CreateSDLWindow();
-	auto application = new FWApplication(50, 50, 800, 800);
+	auto application = new FWApplication();
 	if (!application->GetWindow())
 	{
 		LOG("Couldn't create window...");
@@ -39,7 +39,7 @@ int main(int args[])
 			case SDL_KEYDOWN:
 				switch (event.key.keysym.scancode){
 				case SDL_SCANCODE_SPACE:
-
+					game->Pause();
 					break;
 				default:
 					break;
@@ -48,13 +48,21 @@ int main(int args[])
 		}
 
 		application->UpdateGameObjects();
-		game->Update(application->GetDeltaTime());
+		if (!game->IsPause()){
+			game->Update(application->GetDeltaTime());
+		}
 		application->RenderGameObjects();
 
 		application->SetColor(Color(0, 0, 0, 255));// For the letter colour
-		application->DrawText("[Round] " + std::to_string(game->GetRoundNumber()), 400, 20);
-		application->DrawText("[Seconds Remaining] " + std::to_string(game->GetTimeRemaining()), 400, 40);
-		application->SetColor(Color(255, 255, 255, 255));// For the background
+		application->DrawTextWithWhiteBorder("[Round] " + std::to_string(game->GetRoundNumber()), SCREEN_WIDTH / 2, 20);
+		application->DrawTextWithWhiteBorder("[Seconds Remaining] " + std::to_string(game->GetTimeRemaining()), SCREEN_WIDTH / 2, 40);
+		if (game->IsPause()){
+			application->DrawTextWithWhiteBorder("[PAUSE]", SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
+			application->SetColor(Color(238, 233, 233, 255));// For the background
+		}
+		else{
+			application->SetColor(Color(255, 255, 255, 255));// For the background
+		}
 
 
 		if (game->GameOver()){

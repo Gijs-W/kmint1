@@ -9,6 +9,7 @@
 
 #include <fstream>
 
+#define TEXTURE_SIZE 32
 
 Instance::Instance(FWApplication* application, std::string colour)
 {
@@ -18,25 +19,25 @@ Instance::Instance(FWApplication* application, std::string colour)
 	m_Cow = new Cow();
 	SDL_Texture* cowTexture = application->LoadTexture("Cow/cow-" + colour + ".png");
 	m_Cow->SetTexture(cowTexture);
-	m_Cow->SetSize(32, 32);
+	m_Cow->SetSize(TEXTURE_SIZE, TEXTURE_SIZE);
 	application->AddRenderable(m_Cow);
 
 	m_Rabbit = new Rabbit();
 	SDL_Texture* rabitTexture = application->LoadTexture("Rabbit/rabbit-" + colour + ".png");
 	m_Rabbit->SetTexture(rabitTexture);
-	m_Rabbit->SetSize(32, 32);
+	m_Rabbit->SetSize(TEXTURE_SIZE, TEXTURE_SIZE);
 	application->AddRenderable(m_Rabbit);
 
 	m_Pill = new Pill();
 	SDL_Texture* pillTexture = application->LoadTexture("Pill/pill-" + colour + ".png");
 	m_Pill->SetTexture(pillTexture);
-	m_Pill->SetSize(32, 32);
+	m_Pill->SetSize(TEXTURE_SIZE, TEXTURE_SIZE);
 	application->AddRenderable(m_Pill);
 
 	m_Gun = new Gun();
 	SDL_Texture* gunTexture = application->LoadTexture("Gun/gun-" + colour + ".png");
 	m_Gun->SetTexture(gunTexture);
-	m_Gun->SetSize(32, 32);
+	m_Gun->SetSize(TEXTURE_SIZE, TEXTURE_SIZE);
 	application->AddRenderable(m_Gun);
 
 	ResetEntities(true, true, true, true);
@@ -62,6 +63,11 @@ Gun* Instance::GetGun(){
 	return m_Gun;
 }
 
+
+std::string Instance::GetColour(){
+	return m_Colour;
+}
+
 void Instance::ResetEntities(bool Cow, bool Rabbit, bool Pill, bool Gun){
 	if (Cow) ResetCow();
 	if (Rabbit) ResetRabbit();
@@ -77,8 +83,8 @@ void Instance::HardResetEntities(){
 }
 
 void Instance::ResetCow(){
-	int x = 800 - (rand() % 800);
-	int y = 800 - (rand() % 800);
+	int x = SCREEN_WIDTH - (rand() % SCREEN_WIDTH);
+	int y = SCREEN_HEIGHT - (rand() % SCREEN_HEIGHT);
 	m_Cow->SetPosition(Vector2D(x, y));
 	m_Cow->SetOffset(x, y);
 	if (m_Cow->GetState()->ShouldResetState()){
@@ -93,7 +99,7 @@ void Instance::HardResetCow(){
 }
 
 void Instance::ResetRabbit(){
-	int x = m_Cow->GetPosition().x + 400;
+	int x = m_Cow->GetPosition().x + SCREEN_WIDTH/2;
 	int y = m_Cow->GetPosition().y;
 	m_Rabbit->SetPosition(Vector2D(x, y));
 	m_Rabbit->SetOffset(x, y);
@@ -106,15 +112,15 @@ void Instance::HardResetRabbit(){
 }
 
 void Instance::ResetPill(){
-	int x = 800 - (rand() % 800);
-	int y = 800 - (rand() % 800);
+	int x = SCREEN_WIDTH - (rand() % SCREEN_WIDTH);
+	int y = SCREEN_HEIGHT - (rand() % SCREEN_HEIGHT);
 	m_Pill->SetPosition(Vector2D(x, y));
 	m_Pill->SetOffset(x, y);
 }
 
 void Instance::ResetGun(){
-	int x = 800 - (rand() % 800);
-	int y = 800 - (rand() % 800);
+	int x = SCREEN_WIDTH - (rand() % SCREEN_WIDTH);
+	int y = SCREEN_HEIGHT - (rand() % SCREEN_HEIGHT);
 	m_Gun->SetPosition(Vector2D(x, y));
 	m_Gun->SetOffset(x, y);
 }

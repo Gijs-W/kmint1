@@ -8,7 +8,7 @@ Cow::Cow()
 	SetSpeed(COW_SPEED);
 	ResetState();
 
-	SetChoiceChances(30 - (rand() % 20), 30 - (rand() % 20), 30 - (rand() % 20), 30 - (rand() % 20));
+	SetChoiceChances(30 - (rand() % 20), 30 - (rand() % 20), 30 - (rand() % 20), 30 - (rand() % 20));//Initially, the values must be between a random value between 10 and 30
 }
 
 void Cow::Update(Instance* instance, float deltatime){
