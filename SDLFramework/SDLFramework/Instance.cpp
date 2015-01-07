@@ -89,7 +89,7 @@ void Instance::ResetRabbit(){
 	int y = m_Cow->GetPosition().y;
 	m_Rabbit->SetPosition(Vector2D(x, y));
 	m_Rabbit->SetOffset(x, y);
-	m_Cow->ResetState();
+	m_Rabbit->ResetState();
 }
 
 void Instance::ResetPill(){
