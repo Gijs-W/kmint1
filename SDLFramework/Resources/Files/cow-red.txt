@@ -1,1 +1,111 @@
 Information about the red cow:
+
+-----------------------------------------
+---------------- Round 1 ----------------
+-----------------------------------------
+    Cow Points: 0
+    Rabbit Points: 170
+    Cow Flee Chance: 15.555555
+    Cow Find Pill Chance: 25.555555
+    Cow Find Gun Chance: 33.333332
+    Cow Hide Chance: 25.555555
+
+-----------------------------------------
+---------------- Round 2 ----------------
+-----------------------------------------
+    Cow Points: 0
+    Rabbit Points: 140
+    Cow Flee Chance: 22.686352
+    Cow Find Pill Chance: 26.503418
+    Cow Find Gun Chance: 24.306805
+    Cow Hide Chance: 26.503418
+
+-----------------------------------------
+---------------- Round 3 ----------------
+-----------------------------------------
+    Cow Points: 0
+    Rabbit Points: 150
+    Cow Flee Chance: 22.663410
+    Cow Find Pill Chance: 26.476616
+    Cow Find Gun Chance: 24.282225
+    Cow Hide Chance: 26.577745
+
+-----------------------------------------
+---------------- Round 4 ----------------
+-----------------------------------------
+    Cow Points: 0
+    Rabbit Points: 140
+    Cow Flee Chance: 23.552605
+    Cow Find Pill Chance: 24.859077
+    Cow Find Gun Chance: 25.234932
+    Cow Hide Chance: 26.353378
+
+-----------------------------------------
+---------------- Round 5 ----------------
+-----------------------------------------
+    Cow Points: 0
+    Rabbit Points: 170
+    Cow Flee Chance: 23.692577
+    Cow Find Pill Chance: 25.028332
+    Cow Find Gun Chance: 25.384903
+    Cow Hide Chance: 25.894184
+
+-----------------------------------------
+---------------- Round 6 ----------------
+-----------------------------------------
+    Cow Points: 0
+    Rabbit Points: 150
+    Cow Flee Chance: 23.871653
+    Cow Find Pill Chance: 24.538280
+    Cow Find Gun Chance: 25.576769
+    Cow Hide Chance: 26.013298
+
+-----------------------------------------
+---------------- Round 7 ----------------
+-----------------------------------------
+    Cow Points: 14
+    Rabbit Points: 70
+    Cow Flee Chance: 23.870451
+    Cow Find Pill Chance: 24.539492
+    Cow Find Gun Chance: 25.575481
+    Cow Hide Chance: 26.014580
+
+-----------------------------------------
+---------------- Round 8 ----------------
+-----------------------------------------
+    Cow Points: 12
+    Rabbit Points: 70
+    Cow Flee Chance: 23.963673
+    Cow Find Pill Chance: 24.445757
+    Cow Find Gun Chance: 25.675360
+    Cow Hide Chance: 25.915213
+
+-----------------------------------------
+---------------- Round 9 ----------------
+-----------------------------------------
+    Cow Points: 0
+    Rabbit Points: 140
+    Cow Flee Chance: 23.962759
+    Cow Find Pill Chance: 24.446669
+    Cow Find Gun Chance: 25.674385
+    Cow Hide Chance: 25.916180
+
+-----------------------------------------
+---------------- Round 10 ----------------
+-----------------------------------------
+    Cow Points: 11
+    Rabbit Points: 80
+    Cow Flee Chance: 23.986881
+    Cow Find Pill Chance: 24.638878
+    Cow Find Gun Chance: 25.700232
+    Cow Hide Chance: 25.674009
+
+-----------------------------------------
+---------------- Round 11 ----------------
+-----------------------------------------
+    Cow Points: 0
+    Rabbit Points: 100
+    Cow Flee Chance: 23.987394
+    Cow Find Pill Chance: 24.638357
+    Cow Find Gun Chance: 25.700781
+    Cow Hide Chance: 25.673466

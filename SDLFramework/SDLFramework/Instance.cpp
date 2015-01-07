@@ -7,7 +7,6 @@
 
 #include <string>
 
-//IO
 #include <fstream>
 
 
@@ -78,7 +77,7 @@ void Instance::HardResetEntities(){
 }
 
 void Instance::ResetCow(){
-	int x = 400 - (rand() % 400);
+	int x = 800 - (rand() % 800);
 	int y = 800 - (rand() % 800);
 	m_Cow->SetPosition(Vector2D(x, y));
 	m_Cow->SetOffset(x, y);
@@ -99,7 +98,6 @@ void Instance::ResetRabbit(){
 	m_Rabbit->SetPosition(Vector2D(x, y));
 	m_Rabbit->SetOffset(x, y);
 	//m_Rabbit->ResetState();
-	m_Rabbit->AddPoints(-m_Rabbit->GetPoints());
 }
 
 void Instance::HardResetRabbit(){
@@ -130,10 +128,8 @@ void Instance::NewRound(){
 
 void Instance::ClearRoundInformation(){
 	const std::string textfile("../Resources/Files/cow-" + m_Colour + ".txt");
-
 	std::ofstream output_file(textfile);
 	output_file << "Information about the " + m_Colour + " cow:\n";
-
 }
 
 void Instance::SaveRoundInformation(int roundNumber){

@@ -49,13 +49,13 @@ int main(int args[])
 
 		application->UpdateGameObjects();
 		game->Update(application->GetDeltaTime());
+		application->RenderGameObjects();
 
 		application->SetColor(Color(0, 0, 0, 255));// For the letter colour
 		application->DrawText("[Round] " + std::to_string(game->GetRoundNumber()), 400, 20);
 		application->DrawText("[Seconds Remaining] " + std::to_string(game->GetTimeRemaining()), 400, 40);
 		application->SetColor(Color(255, 255, 255, 255));// For the background
 
-		application->RenderGameObjects();
 
 		if (game->GameOver()){
 			application->Quit();

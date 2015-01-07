@@ -11,8 +11,6 @@ using std::vector;
 
 Game::Game(FWApplication* application)
 {
-	m_RoundNumber = 1;
-	m_RoundTime = 10;
 	ResetRoundTimer();
 	m_InstanceRed	 = new Instance(application, "red");
 	if (!SingleInstance){
@@ -70,21 +68,28 @@ void Game::NewRound(){
 		m_InstanceYellow->SaveRoundInformation(m_RoundNumber);
 	}
 
+	if (m_RoundNumber >= m_MaxRounds){
+		m_GameOver = true;
+		return;
+	}
+
+	int cowAmount{ 4 };//Amount of cows in the game.. and thus how many babies we must produce :3
 
 	map<Cow*, float> cowMap;
-	cowMap[m_InstanceRed->GetCow()] = m_InstanceRed->GetCow()->GetPoints() / 100.0f * 4.0f;
-	cowMap[m_InstanceGreen->GetCow()] = m_InstanceGreen->GetCow()->GetPoints() / 100.0f * 4.0f;
-	cowMap[m_InstanceBlue->GetCow()] = m_InstanceBlue->GetCow()->GetPoints() / 100.0f * 4.0f;
-	cowMap[m_InstanceYellow->GetCow()] = m_InstanceYellow->GetCow()->GetPoints() / 100.0f * 4.0f;
+	cowMap[m_InstanceRed->GetCow()] = m_InstanceRed->GetCow()->GetPoints() / 100.0f * cowAmount;
+	cowMap[m_InstanceGreen->GetCow()] = m_InstanceGreen->GetCow()->GetPoints() / 100.0f * cowAmount;
+	cowMap[m_InstanceBlue->GetCow()] = m_InstanceBlue->GetCow()->GetPoints() / 100.0f * cowAmount;
+	cowMap[m_InstanceYellow->GetCow()] = m_InstanceYellow->GetCow()->GetPoints() / 100.0f * cowAmount;
 
 	vector<Cow*> cowVector;
-	while (cowVector.size() < 4){
+	while (cowVector.size() < cowAmount){
 		Cow* cowResult = nullptr;
 		float highestValue = -100;//uhh, should actually be most negative float or something
 
 		for (auto &value : cowMap){
 			if (value.second > highestValue){
 				cowResult = value.first;
+				highestValue = value.second;
 			}
 		}
 
@@ -92,21 +97,22 @@ void Game::NewRound(){
 		cowVector.push_back(cowResult);
 	}
 
-	Cow* firstCow = cowVector.at(0);
-	cowVector.erase(cowVector.begin());
-	int firstCowsPartner = (rand() % 3);
-	Cow* secondCow = cowVector.at(firstCowsPartner);
-	cowVector.erase(cowVector.begin() + firstCowsPartner);
+	int firstCowPosition = (rand() % cowVector.size());
+	Cow* firstCow = cowVector.at(firstCowPosition);
+	cowVector.erase(cowVector.begin() + firstCowPosition);
+	int firstCowsPartnerPosition = (rand() % cowVector.size());
+	Cow* secondCow = cowVector.at(firstCowsPartnerPosition);
+	cowVector.erase(cowVector.begin() + firstCowsPartnerPosition);
 	Cow* thirdCow = cowVector.at(0);
 	cowVector.erase(cowVector.begin());
 	Cow* fourthCow = cowVector.at(0);
 	cowVector.erase(cowVector.begin());
 
-
-	SetCowChoices(m_InstanceRed->GetCow(), firstCow, secondCow, (rand() % 3));
-	SetCowChoices(m_InstanceGreen->GetCow(), secondCow, firstCow, (rand() % 3));
-	SetCowChoices(m_InstanceBlue->GetCow(), thirdCow, fourthCow, (rand() % 3));
-	SetCowChoices(m_InstanceYellow->GetCow(), fourthCow, thirdCow, (rand() % 3));
+	int sliceAmount{ 3 };
+	SetCowChoices(m_InstanceRed->GetCow(), firstCow, secondCow, (rand() % sliceAmount));
+	SetCowChoices(m_InstanceGreen->GetCow(), secondCow, firstCow, (rand() % sliceAmount));
+	SetCowChoices(m_InstanceBlue->GetCow(), thirdCow, fourthCow, (rand() % sliceAmount));
+	SetCowChoices(m_InstanceYellow->GetCow(), fourthCow, thirdCow, (rand() % sliceAmount));
 
 	m_InstanceRed->NewRound();
 	if (!SingleInstance){
@@ -115,10 +121,6 @@ void Game::NewRound(){
 		m_InstanceYellow->NewRound();
 	}
 
-	if (m_RoundNumber >= 5){
-		m_GameOver = true;
-		return;
-	}
 	m_RoundNumber++;
 	ResetRoundTimer();
 }

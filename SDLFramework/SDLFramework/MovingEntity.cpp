@@ -14,7 +14,7 @@ void MovingEntity::Move(float delta){
 	int y =  (int)m_Position.y % 800;
 
 	if (x > 800) x -= 800;//possible fix for negavtive x/y values
-	if (x < 0) x += 800;
+	if (x <= 0) x += 800;
 
 	SetOffset(x, y);
 }

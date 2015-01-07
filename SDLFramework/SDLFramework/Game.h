@@ -9,8 +9,9 @@ class Game
 private:
 	bool SingleInstance = false;
 
-	int m_RoundNumber;
-	int m_RoundTime;
+	int m_RoundNumber{ 1 };//Current Round Number... Let's start with 1, okey?
+	int m_RoundTime{ 30 };//Seconds per round
+	int m_MaxRounds{ 100 };//Total amount of rounds
 	int m_TimeRemaining;
 	std::time_t m_StartingTime;
 	Instance* m_InstanceRed;
