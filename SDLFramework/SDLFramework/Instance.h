@@ -7,6 +7,8 @@ class Gun;
 class Instance
 {
 private:
+	bool m_SpawnPillRandom{ false };
+
 	Cow* m_Cow;
 	Rabbit* m_Rabbit;
 	Pill* m_Pill;
@@ -20,7 +22,6 @@ private:
 	void HardResetRabbit();
 	void ResetPill();
 	void ResetGun();
-	void HardResetEntities();
 	void ClearRoundInformation();
 public:
 	Instance(FWApplication* application, std::string colour);
@@ -31,7 +32,7 @@ public:
 	Gun* GetGun();
 	std::string GetColour();
 	void ResetEntities(bool Cow, bool Rabbit, bool Pill, bool Gun);
-	void NewRound();
+	void HardResetEntities();
 	void DeleteEntity(IGameObject* entity);
 	void SaveRoundInformation(int roundNumber);
 	virtual ~Instance();

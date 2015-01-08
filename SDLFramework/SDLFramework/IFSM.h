@@ -3,8 +3,8 @@
 #define PANIC_DISTANCE 300.0f
 #define CATCH_DISTANCE 15.0f
 
-#define RABBIT_SPEED 18.0f
-#define COW_SPEED 6.0f
+#define RABBIT_SPEED 6.0f
+#define COW_SPEED 3.0f
 
 class Instance;
 class MovingEntity;

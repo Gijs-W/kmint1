@@ -12,6 +12,7 @@ private:
 	float m_HideChance;
 public:
 	Cow();
+	Cow(float fleeChance, float findPillChance, float findGunChance, float hideChance);
 	void Update(Instance* Instance, float deltatime);
 	void ResetState();
 

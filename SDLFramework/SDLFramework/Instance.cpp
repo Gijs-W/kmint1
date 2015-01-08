@@ -112,8 +112,17 @@ void Instance::HardResetRabbit(){
 }
 
 void Instance::ResetPill(){
-	int x = SCREEN_WIDTH - (rand() % SCREEN_WIDTH);
-	int y = SCREEN_HEIGHT - (rand() % SCREEN_HEIGHT);
+	int x;
+	int y;
+	if (m_SpawnPillRandom){
+		x = SCREEN_WIDTH - (rand() % SCREEN_WIDTH);
+		y = SCREEN_HEIGHT - (rand() % SCREEN_HEIGHT);
+	}
+	else{
+		int PixelsToLeft = 200;
+		x = m_Cow->GetPosition().x - PixelsToLeft;
+		y = m_Cow->GetPosition().y;
+	}
 	m_Pill->SetPosition(Vector2D(x, y));
 	m_Pill->SetOffset(x, y);
 }
@@ -125,12 +134,6 @@ void Instance::ResetGun(){
 	m_Gun->SetOffset(x, y);
 }
 
-void Instance::NewRound(){
-
-	//Hard Reset All entities:
-	HardResetEntities();
-
-}
 
 void Instance::ClearRoundInformation(){
 	const std::string textfile("../Resources/Files/cow-" + m_Colour + ".txt");

@@ -17,13 +17,6 @@ void MovingEntity::Move(float delta){
 	if (x > SCREEN_WIDTH) x -= SCREEN_WIDTH;//possible fix for negavtive x/y values
 	if (x <= 0) x += SCREEN_WIDTH;
 
-	if (!isfinite(m_Position.x)){
-		int i = 0;
-	}
-	if (!isfinite(m_Position.y)){
-		int i = 0;
-	}
-
 	SetOffset(x, y);
 }
 
